@@ -19,6 +19,11 @@ describe('Class MyArray', () => {
       arr.push(2);
       expect(arr.length).toBe(5)
     });
+    test("method doesn't change length, if 0 argument is put", () => {
+      const arr = new MyArray(1, 2, 3, 4);
+      arr.push();
+      expect(arr.length).toBe(4)
+    });
   });
   /*   describe('tests for method map', () => {
   
