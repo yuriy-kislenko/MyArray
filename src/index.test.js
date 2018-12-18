@@ -65,18 +65,18 @@ describe('Class MyArray', () => {
     });
 //9
     test('thisArg is set as "this" of mapFunction properly for map method', () => {
-    let isOriginNotEqualAnother = true;
+    let thisEqualAnother = false;
     const originArr = new Array(1, 4, 0);
     const anotherArr = new Array(3, 3, 3);
       
     function callback (item) {
         if(this == anotherArr) {
-          isOriginNotEqualAnother = false;
+          thisEqualAnother = true;
         }
         return item + 10;
     }
     originArr.map(callback, anotherArr);
-    expect(isOriginNotEqualAnother).toBeFalsy();
+    expect(thisEqualAnother).toBeTruthy();
     });
 //10
     test('expect callback args to be equal 3', () => {
