@@ -101,6 +101,14 @@ describe('Class MyArray', () => {
       expect(arr.length==arr2.length).toBeTruthy();
    });
 
+   test('numbers should be sorted as strings without comparator', () => {
+
+      const arr = new MyArray(1, 2,10,21);
+      const arr2 = arr.sort();
+
+      expect(arr2).toEqual([1,10,2,21]);
+   });
+
 
 
 
