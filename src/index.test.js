@@ -29,14 +29,18 @@ describe('Class MyArray', () => {
       const arr = new MyArray(1,4,0);
       expect(arr.hasOwnProperty('sort')).toBeFalsy();
    });
-    /*test('erorr if comparator is not a function or undefined', () => {
+
+    test('error if comparator is not a function or not undefined', () => {
+
       const arr = new MyArray(1,4,0);
+
       let comparator = function(a,b){
         return a-b;
-      }
+      };
 
       expect(comparator).toBeInstanceOf(Function);
-   });*/
+   });
+
 
    test('should work correctly with comparator', () => {
       const arr = new MyArray(1,4,0);
