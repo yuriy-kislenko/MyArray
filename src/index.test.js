@@ -33,6 +33,12 @@ describe('Class MyArray', () => {
       expect(testArr.toString()).toBe('ivan,ivan,ivan')
     });
 
+    test('callback is executed once for each element in the array ', () => {
+      const arr = new MyArray(10);
+      const mockCallback = jest.fn(x => 42 + x);
+      arr.forEach(mockCallback);
+      expect(mockCallback.mock.calls.length).toBe(10);
+    });
   
 
 })
