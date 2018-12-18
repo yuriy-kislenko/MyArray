@@ -3,19 +3,6 @@ import MyArray from './index';
 describe('Class MyArray', () => {
 
   describe('tests for method map', () => {
-// 8
-    test('if custom context doesn\'t provided, use current context', () => {
-      const arr = new MyArray(1, 4, 0);
-      const testArr = [];
-      const user = {
-        name: 'ivan',
-        testForEach () {
-          arr.forEach(() => testArr.push(this.name));
-        }
-      }
-      user.testForEach()
-      expect(testArr.toString()).toBe('ivan,ivan,ivan');
-    });
 // 1
     test('instance has method map', () => {
       const arr = new MyArray(1, 4, 0);
@@ -37,19 +24,36 @@ describe('Class MyArray', () => {
       expect(arr.map((num) => num + 1)).toEqual(new MyArray(6, 5, 4));
     });
 //6 
-    test("Method MAP shouldn't mutate initial array", () => {
+    test("method map shouldn't mutate initial array", () => {
       const arr = new MyArray(5, 4, 3);
       arr.map((num) => num + 1);
-      
+
       expect(arr).toEqual(new MyArray(5, 4, 3));
     });
+//7
+    test('returns an empty array when called on empty array', () => {
+    const arr = new MyArray();
+    expect(arr.map((num) => num + 1)).toEqual(new MyArray());
+    expect(arr.map((num) => num + 1).length).toEqual(new MyArray().length);
+});
+// 8
+test('if custom context doesn\'t provided, use current context', () => {
+  const arr = new MyArray(1, 4, 0);
+  const testArr = [];
+  const user = {
+    name: 'ivan',
+    testForEach () {
+      arr.forEach(() => testArr.push(this.name));
+    }
+  }
+  user.testForEach()
+  expect(testArr.toString()).toBe('ivan,ivan,ivan');
+});
 
-  
 
   });
 
 //map
-
 
 });
 
