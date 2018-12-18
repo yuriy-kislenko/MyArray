@@ -52,6 +52,18 @@ describe('Class MyArray', () => {
       expect(arr.pop() === undefined).toBeTruthy();
     });
 
+    test('if Array is empty, length has to be always 0, even we call pop several time', () => {
+      const arr = new MyArray();
+      const initialLength = arr.length;
+      let finalLength;
+
+      arr.pop();
+      arr.pop();
+      finalLength = arr.length;
+
+      expect(initialLength === 0 && finalLength === 0).toBeTruthy();
+    });
+
   });
 
 });
