@@ -6,6 +6,10 @@ describe('Class MyArray', () => {
        const arr = new MyArray(1,2,3);
       expect(new MyArray().push).toBeInstanceOf(Function);
     });
+    test('instance has not own property push', () => {
+      const arr = new MyArray(1,2,3);
+      expect(arr.hasOwnProperty('push')).toBeFalsy();
+   });
   });
 /*   describe('tests for method map', () => {
 
