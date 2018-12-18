@@ -18,5 +18,23 @@ describe('Class MyArray', () => {
 
   });
 
+  describe('tests for method sort', () => {
+
+    test('instance has method sort', () => {
+      const arr = new MyArray(1,4,0);
+      expect(arr.sort).toBeInstanceOf(Function);
+    });
+
+    test('arr has own property sort', () => {
+      const arr = new MyArray(1,4,0);
+      expect(arr.hasOwnProperty('sort')).toBeFalsy();
+   });
+    test('erorr if comparator is not a function or undefined', () => {
+      const arr = new MyArray(1,4,0);
+      expect(arr.sort(comparator).type();
+   });
+
+  });
 
 });
+
