@@ -49,6 +49,17 @@ describe('Class MyArray', () => {
     user.testForEach()
     expect(testArr.toString()).toBe('ivan,ivan,ivan');
     });
+//10
+    test('expect callback args to be equal 3', () => {
+    let lengthOfArguments;
+    function callback (x) {
+        lengthOfArguments = arguments.length;
+        return x + 10;
+      
+    }
+    new MyArray(1, 10, 20).map(callback);
+    expect(lengthOfArguments).toBe(3);
+    });
 //11
     test('callback has to be a function', () => {
     let isCallback = false;
@@ -59,7 +70,7 @@ describe('Class MyArray', () => {
     const arr = new MyArray(1, 10, 20).map(callback);
     expect(isCallback).toBe(true);
     });
-    
+
   });
 //map
 
