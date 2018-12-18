@@ -66,6 +66,24 @@ describe('Class MyArray', () => {
       expect(arr.forEach(mockCallback)).toBeUndefined();
     });
 
+    test('thisArg is set as this of callbackFunction properly for forEach method ', () => {
+      const arr = new MyArray(1,4,0);
+      const testArr = [];
+      const user = {
+        name: 'ivan',
+        testForEach () {
+        arr.forEach(function() {
+          testArr.push(this.name)
+          }, user2);
+        }
+      }
+      const user2 = {
+        name: 'ivan2',
+      }
+      user.testForEach();
+      expect(testArr.toString()).toBe('ivan2,ivan2,ivan2')
+    });
+
   
 
 })
