@@ -44,8 +44,30 @@ describe('Class MyArray', () => {
         return a-b;
       }
 
-
       expect(arr.sort(comparator)).toEqual([0,1,4]);
+   });
+
+   test('comparator should return "-","+""0', () => {
+
+      const arr = new MyArray(4,0);
+      const arr2 = new MyArray(4,4);
+
+      let comparator1 = function(a,b){
+        return a>b;
+      }
+      let comparator2 = function(a,b){
+        return a<b;
+      }
+
+      let comparator3 = function(a,b){
+        return a==b;
+      }
+
+      expect(comparator1.length).toEqual(2);
+      expect(comparator1(arr[0],arr[1])).toEqual(true);
+      expect(comparator2(arr[0],arr[1])).toEqual(false);
+      expect(comparator3(arr2[0],arr2[1])).toEqual(true);
+
    });
 
   });
