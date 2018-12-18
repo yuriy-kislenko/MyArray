@@ -44,11 +44,5 @@ describe('Class MyArray', () => {
       expect(arr[-1]).toBeUndefined();
       expect(arr[arr.length]).toBeUndefined();
     });
-    test("should mutate initial array, but not return new one", () => {
-      const arr = new MyArray(1, 2, 3, 4);
-      const secondArr = arr;
-      secondArr.push(5);
-      expect(secondArr).toBe(arr);
-    });
   });
 });
