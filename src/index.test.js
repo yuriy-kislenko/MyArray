@@ -30,15 +30,33 @@ describe('Class MyArray', () => {
       expect(arr.hasOwnProperty('sort')).toBeFalsy();
    });
 
+    //point me the place where you testing comparator of method sort
+
     test('error if comparator is not a function or not undefined', () => {
 
-      const arr = new MyArray(1,4,0);
+      let isComparator = false;
 
-      let comparator = function(a,b){
+       let comparator = function(a,b){
+        isComparator = true;
         return a-b;
       };
 
-      expect(comparator).toBeInstanceOf(Function);
+      let undefComparator = false;
+
+      let z;
+
+      if(z == undefined){
+        undefComparator = true;
+      }
+
+
+      const arr1 = new MyArray(1,4,0).sort(comparator);
+
+      const arr2 = new MyArray(1,4,0).sort(z);
+
+      expect(isComparator).toBe(true);
+      expect(undefComparator).toBe(true);
+
    });
 
 
