@@ -64,6 +64,12 @@ describe('Class MyArray', () => {
       expect(initialLength === 0 && finalLength === 0).toBeTruthy();
     });
 
+    test('Should mutate initial array, but not return new one', () => {
+      const arr = new MyArray(1,4,0);
+      const deleted = arr.pop();
+      expect(deleted instanceof MyArray).toBeFalsy();
+    });
+
   });
 
 });
