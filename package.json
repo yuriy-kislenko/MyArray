@@ -4,7 +4,7 @@
   "description": "",
   "main": "webpack.config.js",
   "scripts": {
-    "test": "NODE_ENV=test jest",
+    "test": "cross-env NODE_ENV=test jest",
     "watch": "webpack --watch",
     "start": "webpack-dev-server --open",
     "build": "webpack"
@@ -22,6 +22,7 @@
     "webpack-dev-server": "^3.1.10"
   },
   "dependencies": {
+    "cross-env": "^5.2.0",
     "webpack": "^4.27.1"
   }
 }

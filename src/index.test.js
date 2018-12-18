@@ -1,7 +1,13 @@
 import MyArray from './index';
 
 describe('Class MyArray', () => {
-  describe('tests for method map', () => {
+  describe('tests for push method', () => {
+    test('instance should have method push', () => {
+       const arr = new MyArray(1,2,3);
+      expect(new MyArray().push).toBeInstanceOf(Function);
+    });
+  });
+/*   describe('tests for method map', () => {
 
     test('if custom context doesn\'t provided, use current context', () => {
       const arr = new MyArray(1,4,0);
@@ -16,7 +22,7 @@ describe('Class MyArray', () => {
       expect(testArr.toString()).toBe('ivan,ivan,ivan');
     });
 
-  });
+  }); */
 
 
 });
