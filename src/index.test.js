@@ -13,7 +13,7 @@ describe('Class MyArray', () => {
         }
       }
       user.testForEach()
-      expect(testArr.toString()).toBe('ivan,ivan,ivan');
+      expect(testArr).toEqual(['ivan','ivan','ivan']);
     });
 
   });
