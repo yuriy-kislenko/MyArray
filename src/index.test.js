@@ -30,10 +30,34 @@ describe('Class MyArray', () => {
     });
     test('return value of no filter matches, returns empty array', () => {
       const arr = new MyArray(1,3,4);
-       arr.filter(num=> num == 0)
-      expect()
+      expect(arr.filter(item=>item==0)).toHaveLength(0);
     });
-    
+    test('expect callback args to be equal 3', () => {
+      var arr = new MyArray(12, 5, 8, 130, 44);
+      function isBigEnough(value) {
+        return value >= 10;
+      }
+      var filtered = arr.filter(isBigEnough);
+      expect(filtered.length).toBe(3);
+    });
+
+    test('method does not mutate initial array', () => {
+      var arr = new Array(12, 5, 8, 130, 44);
+      var cont = String(arr);
+      function isBigEnough(value) {
+        return value >= 0;
+      }
+      arr.filter(isBigEnough);
+      var cont1 = String(arr);
+      expect(cont1 == cont).toBeTruthy();
+    });
+
+    test('method must return new Array of current elements which are in check condition', () => {
+      var arr = new Array(1,4,4,5,0,0);
+      var filtered = arr.filter((val) => {return val >=4 } );
+      expect(String(filtered)).toBe(String([4,4,5].join(',')));
+    });
+
 
   });
 
