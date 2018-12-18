@@ -17,12 +17,18 @@ describe('Class MyArray', () => {
     test('method must increment current length by 1, if 1 argument is put ', () => {
       const arr = new MyArray(1, 2, 3, 4);
       arr.push(2);
-      expect(arr.length).toBe(5)
+      expect(arr.length).toBe(5);
     });
     test("method doesn't change length, if 0 argument is put", () => {
       const arr = new MyArray(1, 2, 3, 4);
       arr.push();
-      expect(arr.length).toBe(4)
+      expect(arr.length).toBe(4);
+    });
+    test("pushed element must be the last", () => {
+      const arr = new MyArray(1,2,3,4); 
+      const a = 5;
+      arr.push(a);
+      expect(arr[arr.length - 1]).toEqual(a);
     });
   });
   /*   describe('tests for method map', () => {
