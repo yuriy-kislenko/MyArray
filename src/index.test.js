@@ -10,6 +10,10 @@ describe('Class MyArray', () => {
       const arr = new MyArray(1,2,3);
       expect(arr.hasOwnProperty('push')).toBeFalsy();
    });
+   test('method returns new length', () => {
+    const arr = new MyArray(1,2,3);
+    expect(arr.push(4, 5, 6)).toEqual(arr.length);
+ });
   });
 /*   describe('tests for method map', () => {
 
