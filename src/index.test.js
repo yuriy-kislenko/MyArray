@@ -18,5 +18,18 @@ describe('Class MyArray', () => {
 
   });
 
+  describe('tests for method pop', () => {
+
+    test('instance has method pop', () => {
+      const arr = new MyArray(1,4,0);
+      expect(arr.pop).toBeInstanceOf(Function);
+    });
+
+    test('instance has not Own Property pop', () => {
+      const arr = new MyArray(1,4,0);
+      expect(arr.hasOwnProperty('pop')).toBeFalsy();
+    });
+
+  });
 
 });
