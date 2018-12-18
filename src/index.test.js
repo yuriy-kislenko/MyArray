@@ -84,6 +84,14 @@ describe('Class MyArray', () => {
       expect(arr[0]).toEqual(1);
    });
 
+   test('undefined shoud be at the end of array', () => {
+
+      const arr = new MyArray(undefined, 3,2,1);
+      arr.sort();
+ 
+      expect(arr[arr.length-1]).toEqual(undefined);
+   });
+
 
 
 
