@@ -8,7 +8,7 @@ describe('Class MyArray', () => {
     });
 
     test('instance should have method push', () => {
-      expect(new MyArray().push).toBeInstanceOf(Function);
+      expect(arr.push).toBeInstanceOf(Function);
     });
 
     test('instance has not own property push', () => {   
@@ -19,14 +19,16 @@ describe('Class MyArray', () => {
       expect(arr.push(4, 5, 6)).toEqual(arr.length);
     });
 
-    test('method must increment current length by 1, if 1 argument is put ', () => {     
+    test('method must increment current length by 1, if 1 argument is put ', () => { 
+      let initialLength = arr.length;    
       arr.push(2);
-      expect(arr.length).toBe(4);
+      expect(arr.length).toBe(++initialLength);
     });
 
-    test("method doesn't change length, if 0 argument is put", () => {    
+    test("method doesn't change length, if 0 argument is put", () => {  
+      let initialLength = arr.length;   
       arr.push();
-      expect(arr.length).toBe(3);
+      expect(arr.length).toBe(initialLength);
     });
 
     test("pushed element must be the last", () => {      
@@ -40,7 +42,7 @@ describe('Class MyArray', () => {
     });
 
     test("push 1 element to an empty array, it`s length must be 1", () => {
-      const arr = new MyArray();
+      arr = new MyArray();
       expect(arr.push(1)).toEqual(1);
     });
 
