@@ -39,5 +39,10 @@ describe("Class MyArray", () => {
       );
       expect(String(arr)).toBe("12,22,32");
     });
+
+    test("Method FROM must return new instance of MyArr of current elements", () => {
+      const arr = MyArr.from([10, 20, 30]);
+      expect(arr).toBeInstanceOf(MyArr);
+    });
   });
 });
