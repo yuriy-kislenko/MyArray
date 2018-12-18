@@ -35,6 +35,12 @@ describe('Class MyArray', () => {
       expect(arr.pop()).toBe(0);
     });
 
+    test('Method must delete last element from array', () => {
+      const arr = new MyArray(1,4,0);
+      const deleted = arr.pop();
+      expect(arr[3] === undefined && deleted == 0).toBeTruthy();
+    });
+
   });
 
 });
