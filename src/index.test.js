@@ -13,6 +13,20 @@ describe('Class MyArray', () => {
       const arr = new MyArray(1, 4, 0);
       expect(arr.hasOwnProperty('map')).toBeFalsy();
     });
+//3
+    test('callback must include the originalArray as third argument', () => {
+    let isArrEqualOriginArr = false;
+    const originArr = new MyArray(1, 4, 0);
+
+    function callback (el, index, arr) {
+      if (arr == originArr) {
+        isArrEqualOriginArr = true;
+      }
+      return el + index;
+    }
+    originArr.map(callback);
+    expect(isArrEqualOriginArr).toBeTruthy();
+    });
 // 4
     test('Method map must return an Array', () => {
       const arr = new MyArray(1, 4, 0);
