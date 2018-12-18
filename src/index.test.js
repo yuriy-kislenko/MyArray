@@ -70,6 +70,14 @@ describe('Class MyArray', () => {
 
    });
 
+   test('should work correctly without comparator', () => {
+      const arr = new MyArray("b","c","a");
+ 
+      expect(arr.sort()).toEqual(["a","b","c"]);
+   });
+
+
+
   });
 
 });
