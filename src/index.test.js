@@ -31,11 +31,20 @@ describe('Class MyArray', () => {
       const arr = new MyArray(1, 4, 0);
       expect(arr.map((num) => num + 5)).toBeInstanceOf(MyArray);
     });
-
+//5
     test('should use callback at each element of array', () => {
       const arr = new MyArray(5, 4, 3);
       expect(arr.map((num) => num + 1)).toEqual(new MyArray(6, 5, 4));
     });
+//6 
+    test("Method MAP shouldn't mutate initial array", () => {
+      const arr = new MyArray(5, 4, 3);
+      arr.map((num) => num + 1);
+      
+      expect(arr).toEqual(new MyArray(5, 4, 3));
+    });
+
+  
 
   });
 
