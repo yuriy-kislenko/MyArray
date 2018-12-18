@@ -26,7 +26,7 @@ describe('Class MyArray', () => {
       const user = {
         name: 'ivan',
         testForEach () {
-      arr.forEach(function() {testArr.push(this.name)});
+      arr.forEach( () => {testArr.push(this.name)});
           }
         }
       user.testForEach()
@@ -34,10 +34,10 @@ describe('Class MyArray', () => {
     });
 
     test('callback is executed once for each element in the array ', () => {
-      const arr = new MyArray(10);
+      const arr = new MyArray(1, 2, 3, 4);
       const mockCallback = jest.fn(x => 42 + x);
       arr.forEach(mockCallback);
-      expect(mockCallback.mock.calls.length).toBe(10);
+      expect(mockCallback.mock.calls.length).toBe(4);
     });
 
     test('expect callback args to be equal 3', () => {
@@ -52,13 +52,6 @@ describe('Class MyArray', () => {
       arr.forEach(mockCallback);
       expect(mockCallback.mock.results[0].value).toBe(0);
     });
-
-    // test('typeof arguments[0] must be a Function ', () => {
-    //   const arr = new MyArray(1,2,3);
-    //   const mockCallback = jest.fn( (v, i, arr) =>  0);
-    //   arr.forEach(mockCallback);
-    //   expect(arr.forEach(mockCallback)).toBeType(Function);
-    // });
 
     test('method should return undefined ', () => {
       const arr = new MyArray(1,2,3);
@@ -83,8 +76,6 @@ describe('Class MyArray', () => {
       user.testForEach();
       expect(testArr.toString()).toBe('ivan2,ivan2,ivan2')
     });
-
-  
 
 })
 
