@@ -41,6 +41,12 @@ describe('Class MyArray', () => {
       expect(arr[3] === undefined && deleted == 0).toBeTruthy();
     });
 
+    test('Length of array must reduce by 1', () => {
+      const arr = new MyArray(1,4,0);
+      arr.pop();
+      expect(arr.length === 2).toBeTruthy();
+    });
+
   });
 
 });
