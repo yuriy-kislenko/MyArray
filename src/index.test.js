@@ -22,5 +22,10 @@ describe("Class MyArray", () => {
     test("Class has static method FROM", () => {
       expect(MyArr.from).toBeInstanceOf(Function);
     });
+
+    test("Instance has not Own Property FROM", () => {
+      const arr = new MyArr(1, 4, 0);
+      expect(arr.hasOwnProperty("from")).toBeFalsy();
+    });
   });
 });
