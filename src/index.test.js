@@ -29,7 +29,7 @@ describe('Class MyArray', () => {
 // 4
     test('Method map must return an Array', () => {
       const arr = new MyArray(1,4,0);
-      expect(arr.map((num) => num + 5).toBeInstanceOf(Array);
+      expect(arr.map((num) => num + 5)).toBeInstanceOf(MyArray);
     });
 
   });
