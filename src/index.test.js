@@ -46,12 +46,26 @@ describe('Class MyArray', () => {
       expect(mockCallback.length).toBe(3);
     });
 
-    test('It should pass in the index of each postiion in originalArray as second argument to callback', () => {
+    test('It should pass in the index of each postiion in originalArray as second argument to callback ', () => {
       const arr = new MyArray(1,2,3);
       const mockCallback = jest.fn( (v, i, arr) =>  i);
       arr.forEach(mockCallback);
       expect(mockCallback.mock.results[0].value).toBe(0);
     });
+
+    // test('typeof arguments[0] must be a Function ', () => {
+    //   const arr = new MyArray(1,2,3);
+    //   const mockCallback = jest.fn( (v, i, arr) =>  0);
+    //   arr.forEach(mockCallback);
+    //   expect(arr.forEach(mockCallback)).toBeType(Function);
+    // });
+
+    test('method should return undefined ', () => {
+      const arr = new MyArray(1,2,3);
+      const mockCallback = jest.fn( (v, i, arr) =>  i);
+      expect(arr.forEach(mockCallback)).toBeUndefined();
+    });
+
   
 
 })
