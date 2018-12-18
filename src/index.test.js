@@ -92,6 +92,16 @@ describe('Class MyArray', () => {
       expect(arr[arr.length-1]).toEqual(undefined);
    });
 
+   test('arr length before using sort == arr length after using it', () => {
+
+      const arr = new MyArray(undefined, 3,2,1);
+
+      const arr2 = arr.sort();
+ 
+      expect(arr.length==arr2.length).toBeTruthy();
+   });
+
+
 
 
 
