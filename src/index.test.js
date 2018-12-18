@@ -30,6 +30,11 @@ describe('Class MyArray', () => {
       expect(arr.hasOwnProperty('pop')).toBeFalsy();
     });
 
+    test('Method must return deleted element', () => {
+      const arr = new MyArray(1,4,0);
+      expect(arr.pop()).toBe(0);
+    });
+
   });
 
 });
