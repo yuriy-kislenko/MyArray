@@ -109,6 +109,19 @@ describe('Class MyArray', () => {
       expect(arr2).toEqual([1,10,2,21]);
    });
 
+      test('numbers should be sorted as numbers with comparator', () => {
+
+      const arr1 = new MyArray(1, 10,2,21);
+      const arr2 = new MyArray(3, 40,24,1);
+
+
+      expect(arr1.sort((a,b)=> a - b)).toEqual([1,2,10,21]);
+      expect(arr2.sort((a,b)=> b - a)).toEqual([40,24,3,1]);
+
+
+   });
+
+
 
 
 
