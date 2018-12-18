@@ -19,9 +19,9 @@ describe('Class MyArray', () => {
     const originArr = new MyArray(1, 4, 0);
 
     function callback (el, index, arr) {
-      if (arr == originArr) {
-        isArrEqualOriginArr = true;
-      }
+
+      isArrEqualOriginArr = (arr == originArr);
+
       return el + index;
     }
     originArr.map(callback);
@@ -62,6 +62,21 @@ describe('Class MyArray', () => {
     }
     user.testForEach()
     expect(testArr.toString()).toBe('ivan,ivan,ivan');
+    });
+//9
+    test('thisArg is set as "this" of mapFunction properly for map method', () => {
+    let isOriginNotEqualAnother = true;
+    const originArr = new Array(1, 4, 0);
+    const anotherArr = new Array(3, 3, 3);
+      
+    function callback (item) {
+        if(this == anotherArr) {
+          isOriginNotEqualAnother = false;
+        }
+        return item + 10;
+    }
+    originArr.map(callback, anotherArr);
+    expect(isOriginNotEqualAnother).toBeFalsy();
     });
 //10
     test('expect callback args to be equal 3', () => {
