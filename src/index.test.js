@@ -30,6 +30,10 @@ describe('Class MyArray', () => {
       arr.push(a);
       expect(arr[arr.length - 1]).toEqual(a);
     });
+    test("should allow to add multiple items", () => {
+      const arr = new MyArray(1,2,3,4); 
+      expect(arr.push(5, 6, 7)).toEqual(arr.length);
+    });
   });
   /*   describe('tests for method map', () => {
   
