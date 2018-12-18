@@ -47,6 +47,11 @@ describe('Class MyArray', () => {
       expect(arr.length === 2).toBeTruthy();
     });
 
+    test('must work correctly with empty array', () => {
+      const arr = new MyArray();
+      expect(arr.pop() === undefined).toBeTruthy();
+    });
+
   });
 
 });
