@@ -35,24 +35,32 @@ describe('Class MyArray', () => {
     const arr = new MyArray();
     expect(arr.map((num) => num + 1)).toEqual(new MyArray());
     expect(arr.map((num) => num + 1).length).toEqual(new MyArray().length);
-});
+    });
 // 8
-test('if custom context doesn\'t provided, use current context', () => {
-  const arr = new MyArray(1, 4, 0);
-  const testArr = [];
-  const user = {
+    test('if custom context doesn\'t provided, use current context', () => {
+    const arr = new MyArray(1, 4, 0);
+    const testArr = [];
+    const user = {
     name: 'ivan',
-    testForEach () {
+     testForEach () {
       arr.forEach(() => testArr.push(this.name));
+     }
     }
-  }
-  user.testForEach()
-  expect(testArr.toString()).toBe('ivan,ivan,ivan');
-});
-
-
+    user.testForEach()
+    expect(testArr.toString()).toBe('ivan,ivan,ivan');
+    });
+//11
+    test('callback has to be a function', () => {
+    let isCallback = false;
+    let callback = (x) => {
+        isCallback = true;
+        return x + 1;
+    }
+    const arr = new MyArray(1, 10, 20).map(callback);
+    expect(isCallback).toBe(true);
+    });
+    
   });
-
 //map
 
 });
