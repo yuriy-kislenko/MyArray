@@ -27,5 +27,17 @@ describe("Class MyArray", () => {
       const arr = new MyArr(1, 4, 0);
       expect(arr.hasOwnProperty("from")).toBeFalsy();
     });
+
+    test("If custom context is provided, use its context", () => {
+      const objectAside = Object.create({ 0: 2 });
+      const arr = MyArr.from(
+        [10, 20, 30],
+        function(x) {
+          return x + this[0];
+        },
+        objectAside
+      );
+      expect(String(arr)).toBe("12,22,32");
+    });
   });
 });
