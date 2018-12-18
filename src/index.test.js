@@ -20,7 +20,9 @@ describe('Class MyArray', () => {
     
     test('does not mutate initial arr if we do nothing inside the cb ', () => {
       arr.forEach(a => a);
-      expect(arr.toString()).toBe('1,4,0')
+      expect(arr.toString()).toBe('1,4,0');
+      arr.forEach((v, i, arr) => arr[0] = 10);
+      expect(arr.toString()).toBe('10,4,0');
     });
 
     test('if custom context doesnt provided, use current context ', () => {
@@ -43,6 +45,7 @@ describe('Class MyArray', () => {
 
     test('expect callback args to be equal 3', () => {
       const mockCallback = jest.fn( (v, i, arr) => {});
+      arr.forEach(mockCallback);
       expect(mockCallback.length).toBe(3);
     });
 
@@ -62,13 +65,13 @@ describe('Class MyArray', () => {
       const user = {
         name: 'ivan',
         testForEach () {
-        arr.forEach(function() {
+        arr.forEach(function () {
           testArr.push(this.name)
           }, user2);
         }
       }
       const user2 = {
-        name: 'ivan2',
+        name: 'ivan2'
       }
       user.testForEach();
       expect(testArr.toString()).toBe('ivan2,ivan2,ivan2')
