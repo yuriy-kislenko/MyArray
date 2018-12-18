@@ -38,6 +38,12 @@ describe('Class MyArray', () => {
       const arr = new MyArray(); 
       expect(arr.push(1)).toEqual(1);
     });
+    test("returns undefined if there is no such index", () => {
+      const arr = new MyArray(1, 2, 3, 4); 
+      arr.push(5);
+      expect(arr[-1]).toEqual(undefined);
+      expect(arr[arr.length]).toEqual(undefined);
+    });
   });
   /*   describe('tests for method map', () => {
   
