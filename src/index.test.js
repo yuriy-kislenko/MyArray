@@ -34,6 +34,10 @@ describe('Class MyArray', () => {
       const arr = new MyArray(1,2,3,4); 
       expect(arr.push(5, 6, 7)).toEqual(arr.length);
     });
+    test("push 1 element to an empty array, it`s length must be 1", () => {
+      const arr = new MyArray(); 
+      expect(arr.push(1)).toEqual(1);
+    });
   });
   /*   describe('tests for method map', () => {
   
