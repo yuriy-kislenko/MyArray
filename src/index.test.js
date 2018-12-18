@@ -25,42 +25,30 @@ describe('Class MyArray', () => {
       expect(arr.length).toBe(4);
     });
     test("pushed element must be the last", () => {
-      const arr = new MyArray(1,2,3,4); 
+      const arr = new MyArray(1, 2, 3, 4);
       const a = 5;
       arr.push(a);
       expect(arr[arr.length - 1]).toEqual(a);
     });
     test("should allow to add multiple items", () => {
-      const arr = new MyArray(1,2,3,4); 
+      const arr = new MyArray(1, 2, 3, 4);
       expect(arr.push(5, 6, 7)).toEqual(arr.length);
     });
     test("push 1 element to an empty array, it`s length must be 1", () => {
-      const arr = new MyArray(); 
+      const arr = new MyArray();
       expect(arr.push(1)).toEqual(1);
     });
     test("returns undefined if there is no such index", () => {
-      const arr = new MyArray(1, 2, 3, 4); 
+      const arr = new MyArray(1, 2, 3, 4);
       arr.push(5);
-      expect(arr[-1]).toEqual(undefined);
-      expect(arr[arr.length]).toEqual(undefined);
+      expect(arr[-1]).toBeUndefined();
+      expect(arr[arr.length]).toBeUndefined();
+    });
+    test("should mutate initial array, but not return new one", () => {
+      const arr = new MyArray(1, 2, 3, 4);
+      const secondArr = arr;
+      secondArr.push(5);
+      expect(secondArr).toBe(arr);
     });
   });
-  /*   describe('tests for method map', () => {
-  
-      test('if custom context doesn\'t provided, use current context', () => {
-        const arr = new MyArray(1,4,0);
-        const testArr = [];
-        const user = {
-          name: 'ivan',
-          testForEach () {
-            arr.forEach(() => testArr.push(this.name));
-          }
-        }
-        user.testForEach()
-        expect(testArr.toString()).toBe('ivan,ivan,ivan');
-      });
-  
-    }); */
-
-
 });
