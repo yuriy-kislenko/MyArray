@@ -76,6 +76,16 @@ describe('Class MyArray', () => {
       expect(arr.sort()).toEqual(["a","b","c"]);
    });
 
+   test('lowest element shoud be at the begining of array', () => {
+
+      const arr = new MyArray(3,2,1);
+      arr.sort();
+ 
+      expect(arr[0]).toEqual(1);
+   });
+
+
+
 
 
   });
