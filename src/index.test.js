@@ -5,7 +5,7 @@ describe('Class MyArray', () => {
   describe('tests for method map', () => {
 // 8
     test('if custom context doesn\'t provided, use current context', () => {
-      const arr = new MyArray(1,4,0);
+      const arr = new MyArray(1, 4, 0);
       const testArr = [];
       const user = {
         name: 'ivan',
@@ -18,24 +18,30 @@ describe('Class MyArray', () => {
     });
 // 1
     test('instance has method map', () => {
-      const arr = new MyArray(1,4,0);
+      const arr = new MyArray(1, 4, 0);
       expect(arr.map).toBeInstanceOf(Function);
     });
 // 2
     test('instance has not Own Property map', () => {
-      const arr = new MyArray(1,4,0);
+      const arr = new MyArray(1, 4, 0);
       expect(arr.hasOwnProperty('map')).toBeFalsy();
     });
 // 4
     test('Method map must return an Array', () => {
-      const arr = new MyArray(1,4,0);
+      const arr = new MyArray(1, 4, 0);
       expect(arr.map((num) => num + 5)).toBeInstanceOf(MyArray);
     });
 
+    test('should use callback at each element of array', () => {
+      const arr = new MyArray(5, 4, 3);
+      expect(arr.map((num) => num + 1)).toEqual(new MyArray(6, 5, 4));
+    });
+
   });
+
+//map
 
 
 });
 
 
-//map
