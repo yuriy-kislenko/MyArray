@@ -47,7 +47,7 @@ describe("Class MyArray", () => {
 
     test("If custom context isn't provided, use current context", () => {
       const x = 50;
-      const arr = Array.from([10, 20, 30], function(x) {
+      const arr = MeArr.from([10, 20, 30], function(x) {
         return this.x;
       });
       expect(String(arr)).toBe("10,20,30");
