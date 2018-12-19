@@ -29,15 +29,15 @@ describe('Class MyArray', () => {
       const user = {
         name: 'ivan',
         testForEach () {
-          arr.forEach( () => {testArr.push(this.name)});
+          arr.forEach( () => testArr.push(this.name));
         }
       };
       user.testForEach();
-      expect(testArr.toString()).toEqual('ivan,ivan,ivan');
+      expect(testArr).toEqual(['ivan','ivan','ivan']);
     });
 
     test('callback is executed once for each element in the array ', () => {
-      const mockCallback = jest.fn(x => 42 + x);
+      const mockCallback = jest.fn();
       arr.forEach(mockCallback);
       expect(mockCallback.mock.calls[0][0]).toBe(arr[0]);
       expect(mockCallback.mock.calls[1][0]).toBe(arr[1]);
@@ -45,9 +45,11 @@ describe('Class MyArray', () => {
     });
 
     test('expect callback args to be equal 3', () => {
-      const mockCallback = jest.fn(x => 42 + x);
+      const mockCallback = jest.fn();
       arr.forEach(mockCallback);
       expect(mockCallback.mock.calls[0].length).toBe(3);
+      expect(mockCallback.mock.calls[1].length).toBe(3);
+      expect(mockCallback.mock.calls[2].length).toBe(3);
     });
 
     test('It should pass in the index of each position in originalArray as second argument to callback ', () => {
@@ -77,7 +79,7 @@ describe('Class MyArray', () => {
         name: 'ivan2'
       };
       user.testForEach();
-      expect(testArr.toString()).toEqual('ivan2,ivan2,ivan2');
+      expect(testArr).toEqual(['ivan2','ivan2','ivan2']);
     });
 
 })
