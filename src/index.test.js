@@ -56,7 +56,7 @@ describe('Class MyArray', () => {
       expect(arrEmpty.pop()).toBeUndefined();
     });
 
-    test('if Array is empty, length has to be always 0, even we call pop several time', () => {
+    test('Empty array length always must be 0', () => {
       const arrEmpty = new MyArray();
       const initialLength = arrEmpty.length;
       arr.pop();
