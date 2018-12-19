@@ -15,17 +15,13 @@ describe('Class MyArray', () => {
     });
 //3
     test('callback must include the originalArray as third argument', () => {
-    let isArrEqualOriginArr = false;
-    const originArr = new MyArray(1, 4, 0);
+      const mockCallback = jest.fn();
+      const originArr = new MyArray(1, 4, 0);
+      originArr.map(mockCallback);
 
-    function callback (el, index, arr) {
-
-      isArrEqualOriginArr = (arr == originArr);
-
-      return el + index;
-    }
-    originArr.map(callback);
-    expect(isArrEqualOriginArr).toBeTruthy();
+      expect(mockCallback.mock.calls[0][2]).toEqual(originArr);
+      expect(mockCallback.mock.calls[1][2]).toEqual(originArr);
+      expect(mockCallback.mock.calls[2][2]).toEqual(originArr);
     });
 // 4
     test('Method map must return an Array', () => {
@@ -34,8 +30,13 @@ describe('Class MyArray', () => {
     });
 //5
     test('should use callback at each element of array', () => {
+      const mockCallback = jest.fn(num => num * 10);
       const arr = new MyArray(5, 4, 3);
-      expect(arr.map((num) => num + 1)).toEqual(new MyArray(6, 5, 4));
+      arr.map(mockCallback);
+
+      expect(mockCallback.mock.results[0].value).toBe(50);
+      expect(mockCallback.mock.results[1].value).toBe(40);
+      expect(mockCallback.mock.results[2].value).toBe(30);
     });
 //6 
     test("method map shouldn't mutate initial array", () => {
@@ -53,16 +54,17 @@ describe('Class MyArray', () => {
 // 8
     test('if custom context doesn\'t provided, use current context', () => {
     const arr = new MyArray(1, 4, 0);
-    const testArr = [];
+    const testArr = new MyArray();
     const user = {
     name: 'ivan',
-     testForEach () {
-      arr.forEach(() => testArr.push(this.name));
+     testMap () {
+      arr.map(() => testArr.push(this.name));
      }
     }
-    user.testForEach()
-    expect(testArr.toString()).toBe('ivan,ivan,ivan');
+    user.testMap();
+    expect(testArr).toEqual(new MyArray('ivan', 'ivan', 'ivan'));
     });
+
 //9
     test('thisArg is set as "this" of mapFunction properly for map method', () => {
     let thisEqualAnother = false;
@@ -70,36 +72,27 @@ describe('Class MyArray', () => {
     const anotherArr = new Array(3, 3, 3);
       
     function callback (item) {
-        if(this == anotherArr) {
-          thisEqualAnother = true;
-        }
+        thisEqualAnother = (this == anotherArr);
         return item + 10;
     }
     originArr.map(callback, anotherArr);
     expect(thisEqualAnother).toBeTruthy();
     });
 //10
-    test('expect callback args to be equal 3', () => {
-    let lengthOfArguments;
-    function callback (x) {
-        lengthOfArguments = arguments.length;
-        return x + 10;
-      
-    }
-    new MyArray(1, 10, 20).map(callback);
-    expect(lengthOfArguments).toBe(3);
+    test('expect  callbacks args length to be equal 3', () => {
+        const mockCallback = jest.fn();
+        const arr = new MyArray(1, 2, 3);
+        arr.map(mockCallback);
+        expect(mockCallback.mock.calls.length).toBe(3);
     });
 //11
     test('callback has to be a function', () => {
-    let isCallback = false;
-    let callback = (x) => {
-        isCallback = true;
-        return x + 1;
-    }
-    const arr = new MyArray(1, 10, 20).map(callback);
-    expect(isCallback).toBe(true);
-    });
+        const callback = "";
+        const arr = new MyArray(1, 2, 3); 
 
+        expect(() => {arr.map(callback)}).toThrow();
+        
+    });
   });
 //map
 
