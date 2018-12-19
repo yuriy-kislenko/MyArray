@@ -28,7 +28,7 @@ describe("Class MyArray", () => {
 
     test("return value of no filter matches, returns empty array", () => {
       const arr = new MyArray(1, 3, 4);
-      expect(arr.filter(item => item == 0)).toHaveLength(0);
+      expect(arr.filter(item => item === 0)).toHaveLength(0);
     });
 
     test("expect callback args to be equal 3", () => {
