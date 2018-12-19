@@ -42,6 +42,10 @@ describe('Class MyArray', () => {
         test("if there is 1 argument copy array to end", () => {
             expect(arr.slice(3).toString()).toEqual('4,5,6,7');
         });
+
+        test("if there is no arguments copy initial array", () => {
+            expect(arr.slice().toString()).toEqual(arr.toString());
+        });
     });
 
 
