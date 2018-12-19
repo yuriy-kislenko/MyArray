@@ -80,14 +80,14 @@ describe('Class MyArray', () => {
     });
     
   //2  
-    test('returns the first element that satisfies the criterion', () => {
+    test('returns the first element that satisfies the expression', () => {
       const callback = (x)=> x > 1;
       const arr = new MyArray(1, 2, 3);
       expect(arr.find(callback)).toBe(2);
     });
   
   //3
-    test('callback has to be a function', () => {
+    test('trhow error if callback is not a function', () => {
       const callback = "";
       const arr = new MyArray(1, 2, 3); 
       expect(() => {arr.find(callback)}).toThrow();
@@ -96,7 +96,7 @@ describe('Class MyArray', () => {
     });
   
   //4
-    test('expect  callbacks args length to be equal 3', () => {
+    test('expect callbacks args length to be equal 3', () => {
       const callback = jest.fn();
       const arr = new MyArray(1, 2, 3);
       arr.find(callback);
@@ -109,9 +109,9 @@ describe('Class MyArray', () => {
       const originArr = new MyArray(1, 4, 0);
       originArr.find(callback);
   
-      expect(callback.mock.calls[0][2]).toEqual(originArr);
-      expect(callback.mock.calls[1][2]).toEqual(originArr);
-      expect(callback.mock.calls[2][2]).toEqual(originArr);
+      expect(callback.mock.calls[0][2]).toBe(originArr);
+      expect(callback.mock.calls[1][2]).toBe(originArr);
+      expect(callback.mock.calls[2][2]).toBe(originArr);
       });
 
   //6
