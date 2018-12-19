@@ -14,6 +14,10 @@ describe('Class MyArray', () => {
             expect(arr.slice).toBeInstanceOf(Function);
         });
 
+        test("instance has not Own Property slice", () => {
+            expect(arr.hasOwnProperty('slice')).toBeFalsy();
+        });
+
     });
 
 
