@@ -85,6 +85,16 @@ describe('Class MyArray', () => {
       const arr = new MyArray(1, 2, 3);
       expect(arr.find(callback)).toBe(2);
     });
+  
+  //3
+    test('callback has to be a function', () => {
+      const callback = "";
+      const arr = new MyArray(1, 2, 3); 
+      expect(() => {arr.find(callback)}).toThrow();
+      
+      
+    });
+  
   });
 
 });
