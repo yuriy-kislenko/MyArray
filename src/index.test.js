@@ -19,9 +19,9 @@ describe('Class MyArray', () => {
         });
 
         test("method must return new array", () => {
-            let initialArray = arr;
+            const initialArray = arr;
             expect(arr.slice()).not.toBe(initialArray);
-            expect(arr.slice().toString()).toBe(initialArray.toString());
+            expect(arr.slice()).toEqual(initialArray);
         });
 
         test("new array must be an instance of My Array", () => {
@@ -29,27 +29,27 @@ describe('Class MyArray', () => {
         });
 
         test("method can include 0, 1 or 2 arguments", () => {
-            expect(arr.slice().toString()).toEqual('1,2,3,4,5,6,7');
-            expect(arr.slice(1).toString()).toEqual('2,3,4,5,6,7');
-            expect(arr.slice(1,2).toString()).toEqual('2');
+            expect(arr.slice()).toEqual(new MyArray(1,2,3,4,5,6,7));
+            expect(arr.slice(1)).toEqual(new MyArray(2,3,4,5,6,7));
+            expect(arr.slice(1,3)).toEqual(new MyArray(2, 3));
         });
-
+        
         test("if index is negative start from the end", () => {
-            expect(arr.slice(-3, 6).toString()).toEqual('5,6');
-            expect(arr.slice(-3, -2).toString()).toEqual('5');
+            expect(arr.slice(-3, 6)).toEqual(new MyArray(5, 6));
+            expect(arr.slice(-4, -2)).toEqual(new MyArray(4, 5));
         });
-
+        
         test("if there is 1 argument copy array to end", () => {
-            expect(arr.slice(3).toString()).toEqual('4,5,6,7');
+            expect(arr.slice(3)).toEqual(new MyArray(4,5,6,7));
         });
 
         test("if there is no arguments copy initial array", () => {
-            expect(arr.slice().toString()).toEqual(arr.toString());
+            expect(arr.slice()).toEqual(arr);
         });
 
         test("if the first element is null or undefined start from index 0", () => {
-            expect(arr.slice(null, 5).toString()).toEqual('1,2,3,4,5');
-            expect(arr.slice(undefined, 3).toString()).toEqual('1,2,3');
+            expect(arr.slice(null, 5)).toEqual(new MyArray(1,2,3,4,5));
+            expect(arr.slice(undefined, 3)).toEqual(new MyArray(1,2,3));
         });
     });
 
