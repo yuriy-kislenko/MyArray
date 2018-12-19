@@ -113,6 +113,12 @@ describe('Class MyArray', () => {
       expect(callback.mock.calls[1][2]).toEqual(originArr);
       expect(callback.mock.calls[2][2]).toEqual(originArr);
       });
+
+  //6
+      test('instance has not Own Property map', () => {
+        const arr = new MyArray(1, 4, 0);
+        expect(arr.hasOwnProperty('find')).toBeFalsy();
+      });
   });
 
 });
