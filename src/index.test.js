@@ -46,6 +46,11 @@ describe('Class MyArray', () => {
         test("if there is no arguments copy initial array", () => {
             expect(arr.slice().toString()).toEqual(arr.toString());
         });
+
+        test("if the first element is null or undefined start from index 0", () => {
+            expect(arr.slice(null, 5).toString()).toEqual('1,2,3,4,5');
+            expect(arr.slice(undefined, 3).toString()).toEqual('1,2,3');
+        });
     });
 
 
