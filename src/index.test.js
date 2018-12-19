@@ -88,6 +88,12 @@ describe('Class MyArray', () => {
       const new2 = arr;
       expect(new1).toEqual(new2);
     });
+    test("callback has to be a function", () => {
+      let callback = 1212121;
+      const arr = new Array(1, 4, 4, 5, 0, 0);
+      expect(()=>{arr.reduce(callback)}).toThrow();
+
+    });
   });
 
 });
