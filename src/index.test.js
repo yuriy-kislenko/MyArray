@@ -30,7 +30,7 @@ describe('Class MyArray', () => {
     });
 
     test('returns a comma separated list of elements', ()=> {
-      expect(arr.toString()).toMatch(/(.+,)*\d+$/);
+      expect(arr.toString()).toMatch(/^([^,\s]+,)*([^,\s]+,)*[^,\s]+$/);
     });
 
   });
