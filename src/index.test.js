@@ -46,8 +46,8 @@ describe('Class MyArray', () => {
     });
 
     test('comparator must accepts two arguments', () => {
-     const arr = new MyArray(4, 0).sort(comparator);
      let comparatorLength;
+     const arr = new MyArray(4, 0).sort(comparator);
      function comparator(a, b){
       comparatorLength = arguments.length;
       return a-b;
