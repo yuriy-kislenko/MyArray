@@ -20,9 +20,11 @@ describe('Class MyArray', () => {
 
     test('the toString result of empty arr must be an empty string and not undefined', ()=> {
       arr = new MyArray(0);
-      expect(arr.toString()).toMatch('');
+      expect(arr.toString()).toMatch(/^$/);
       expect(arr.toString()).not.toBeUndefined();
     });
+
+    
 
 })
 
