@@ -68,16 +68,14 @@ describe('Class MyArray', () => {
 
 //9
     test('thisArg is set as "this" of mapFunction properly for map method', () => {
-    let thisEqualAnother = false;
-    const originArr = new Array(1, 4, 0);
-    const anotherArr = new Array(3, 3, 3);
+    const originArr = new MyArray(1, 4, 0);
+    const customContext = { test: 10 };
       
     function callback (item) {
-        thisEqualAnother = (this == anotherArr);
-        return item + 10;
+        return this.test;
     }
-    originArr.map(callback, anotherArr);
-    expect(thisEqualAnother).toBeTruthy();
+    const resultArr = originArr.map(callback, customContext);
+    expect(resultArr).toEqual(new MyArray(10, 10, 10));
     });
 //10
     test('expect  callbacks args length to be equal 3', () => {
@@ -99,4 +97,55 @@ describe('Class MyArray', () => {
 
 });
 
+  describe('tests for method pop', () => {
+    let arr;
+
+    beforeEach(() => {
+      arr = new MyArray(1,4,0)
+    });
+
+    test('instance has method pop', () => {
+      expect(arr.pop).toBeInstanceOf(Function);
+    });
+
+    test('instance has not Own Property pop', () => {
+      expect(arr.hasOwnProperty('pop')).toBeFalsy();
+    });
+
+    test('Method must return deleted element', () => {
+      expect(arr.pop()).toBe(0);
+    });
+
+    test('Method must delete last element from array', () => {
+      const deleted = arr.pop();
+
+      expect(arr[3]).toBeUndefined();
+      expect(deleted).toBe(0);
+    });
+
+    test('Length of array must reduce by 1', () => {
+      arr.pop();
+
+      expect(arr.length).toBe(2);
+    });
+
+    test('must work correctly with empty array', () => {
+      const arrEmpty = new MyArray();
+
+      expect(arrEmpty.pop()).toBeUndefined();
+    });
+
+    test('Empty array length always must be 0', () => {
+      const arrEmpty = new MyArray();
+      const initialLength = arrEmpty.length;
+      arr.pop();
+      arr.pop();
+      const finalLength = arrEmpty.length;
+
+      expect(initialLength).toBe(0);
+      expect(finalLength).toBe(0);
+
+    });
+
+  });
 
