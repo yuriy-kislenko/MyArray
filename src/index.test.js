@@ -15,7 +15,6 @@ describe('Class MyArray', () => {
       user.testForEach()
       expect(testArr.toString()).toBe('ivan,ivan,ivan');
     });
-
   });
 
   describe('tests for method sort', () => {
@@ -25,53 +24,59 @@ describe('Class MyArray', () => {
       expect(arr.sort).toBeInstanceOf(Function);
     });
 
-    test('arr has own property sort', () => {
+    test('arr has not own property sort', () => {
       const arr = new MyArray(1,4,0);
       expect(arr.hasOwnProperty('sort')).toBeFalsy();
    });
 
     //point me the place where you testing comparator of method sort
 
-    test('error if comparator is not a function or not undefined', () => {
+   /* test('error if comparator is not a function or not undefined', () => {
 
       let isComparator = false;
-
-       let comparator = function(a,b){
-        isComparator = true;
-        return a-b;
-      };
-
       let undefComparator = false;
-
       let z;
 
-      if(z == undefined){
-        undefComparator = true;
-      }
+      // let comparator = function(a,b){
+      //   isComparator = true;
+      //   return a-b;
+      // };
+      let comparator = 1;
+      // if(z == undefined){
+
+      //   undefComparator = true;
+      // }
+      console.log(MyArray(1,4,0).sort(comparator))
+      expect(MyArray(1,4,0).sort(comparator)).toThrow(TypeError);
+      // const arr2 = new MyArray(1,4,0).sort(z);
+
+      // expect(undefComparator).toBe(true);
+      // expect(isComparator).toBe(true);
 
 
-      const arr1 = new MyArray(1,4,0).sort(comparator);
+      // try{
+      //   expect(comparator).toBeInstanceOf(Function);
 
-      const arr2 = new MyArray(1,4,0).sort(z);
+      // }catch(e){
+      //   console.log('ERROR IS '+ e);
+      //   //expect(e).toBe(TypeError);
 
-      expect(isComparator).toBe(true);
-      expect(undefComparator).toBe(true);
+      // }
 
-   });
+
+   });*/
 
 
    test('should work correctly with comparator', () => {
+
       const arr = new MyArray(1,4,0);
       let comparator = function(a,b){
         return a-b;
       }
-
       expect(arr.sort(comparator)).toEqual([0,1,4]);
    });
 
-//we can't check returned value of comparator, just check length of arguments
-
-   test('comparator must accepts two arguments and return "-","+""0', () => {
+   test('comparator must accepts two arguments', () => {
    
      let comparatorLength;
      const arr = new MyArray(4,0).sort(comparator);
@@ -80,9 +85,7 @@ describe('Class MyArray', () => {
         comparatorLength = arguments.length;
         return a-b;
       }
-     
       expect(comparatorLength).toEqual(2);
-
    });
 
    //add more...try 1,2,11,22
@@ -91,10 +94,8 @@ describe('Class MyArray', () => {
 
       const arr = new MyArray("b","c","a");
       const arr2 = new MyArray(1,2,11 ,12);
- 
       expect(arr.sort()).toEqual(["a","b","c"]);
       expect(arr2.sort()).toEqual([1,11,12,2]);
-
    });
 
    //it is not clear, by default we work with data as string
@@ -103,7 +104,6 @@ describe('Class MyArray', () => {
 
       const arr = new MyArray("h","d","m");
       arr.sort();
- 
       expect(arr[0]).toEqual("d");
    });
 
@@ -128,9 +128,7 @@ describe('Class MyArray', () => {
    test('arr length before using sort == arr length after using it', () => {
 
       const arr = new MyArray(undefined, 3,2,1);
-
       const arr2 = arr.sort();
- 
       expect(arr.length).toEqual(arr2.length);
    });
 
@@ -138,7 +136,6 @@ describe('Class MyArray', () => {
 
       const arr = new MyArray(1, 2,10,21);
       const arr2 = arr.sort();
-
       expect(arr2).toEqual([1,10,2,21]);
    });
 
@@ -146,10 +143,8 @@ describe('Class MyArray', () => {
 
       const arr1 = new MyArray(1, 10,2,21);
       const arr2 = new MyArray(3, 40,24,1);
-
       expect(arr1.sort((a,b)=> a - b)).toEqual([1,2,10,21]);
       expect(arr2.sort((a,b)=> b - a)).toEqual([40,24,3,1]);
-
    });
 
       test('arr should be mutated', () => {
@@ -159,14 +154,6 @@ describe('Class MyArray', () => {
      
       expect(arr).toEqual([1,10,2,21]);
      });
-
-
-
-
-
-
-
   });
-
 });
 
