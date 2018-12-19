@@ -78,7 +78,13 @@ describe('Class MyArray', () => {
       const callback = (x) => x > 10; 
       expect(arr.find(callback)).toBeUndefined();
     });
-  
+    
+  //2  
+    test('returns the first element that satisfies the criterion', () => {
+      const callback = (x)=> x > 1;
+      const arr = new MyArray(1, 2, 3);
+      expect(arr.find(callback)).toBe(2);
+    });
   });
 
 });
