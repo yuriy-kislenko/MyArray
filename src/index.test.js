@@ -94,6 +94,15 @@ describe('Class MyArray', () => {
       expect(()=>{arr.reduce(callback)}).toThrow();
 
     });
+    test("If an array is empty but there is an InitialValue as a parameter", () => {
+      let arr = new Array();
+      const mockCallback = jest.fn();
+      
+      let thisArg = { minimum: 10, maximum: 20 };
+      let result = arr.reduce(mockCallback, thisArg);
+      expect(result).toEqual(thisArg);
+    });
+
   });
 
 });
