@@ -102,6 +102,14 @@ describe('Class MyArray', () => {
       let result = arr.reduce(mockCallback, thisArg);
       expect(result).toEqual(thisArg);
     });
+    test('initialValue is not passed', () => {
+      const arr = new MyArray(1, 2);
+    
+      arr.reduce((accum, curr, i) => {
+      expect(accum).toEqual(arr[0]);
+      });
+    });
+    
 
   });
 
