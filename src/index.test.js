@@ -26,15 +26,13 @@ describe('Class MyArray', () => {
 
     test('method has to return a string', ()=> {
       const str = arr.toString();
-      expect(typeof str).toBe('string');
+      expect(typeof str).toEqual('string');
     });
 
     test('returns a comma separated list of elements', ()=> {
       expect(arr.toString()).toMatch(/(.+,)*\d+$/);
     });
 
-})
-
-
+  });
 
 });
