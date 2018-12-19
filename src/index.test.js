@@ -53,32 +53,14 @@ describe('Class MyArray', () => {
         });
     });
 
+    describe('tests for method map', () => {
 
+        test("should mutate initial array, but not return new one", () => {
+            const arr = new MyArray(1, 2, 3, 4); 
+            const secondArr = arr;
+            secondArr.push(5);
+            expect(secondArr).toBe(arr);
+        });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // describe('tests for method map', () => {
-
-    //     test("should mutate initial array, but not return new one", () => {
-    //         const arr = new MyArray(1, 2, 3, 4); 
-    //         const secondArr = arr;
-    //         secondArr.push(5);
-    //         expect(secondArr).toBe(arr);
-    //     });
-
-    // });
+    });
 });
