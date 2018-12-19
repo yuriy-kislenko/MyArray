@@ -18,6 +18,11 @@ describe('Class MyArray', () => {
             expect(arr.hasOwnProperty('slice')).toBeFalsy();
         });
 
+        test("method must return new array", () => {
+            let initialArray = arr;
+            expect(arr.slice()).not.toBe(initialArray);
+        });
+
     });
 
 
