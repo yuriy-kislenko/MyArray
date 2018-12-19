@@ -12,7 +12,7 @@ describe("Class MyArray", () => {
         }
       };
       user.testForEach();
-      expect(testArr).toEqual(["ivan", "ivan", "ivan"]);
+      expect(testArr).toEqual(new MyArray("ivan", "ivan", "ivan"));
     });
   });
   describe("tests for method filter", () => {
@@ -45,9 +45,9 @@ describe("Class MyArray", () => {
     });
 
     test("method must return new Array of current elements which are in check condition", () => {
-      const arr = new Array(1, 4, 4, 5, 0, 0);
+      const arr = new MyArray(1, 4, 4, 5, 0, 0);
       const filtered = arr.filter(val => val >= 4);
-      expect(filtered).toEqual([4, 4, 5]);
+      expect(filtered).toEqual(new MyArray(4, 4, 5));
     });
 
     test("callback has to be a function", () => {
@@ -61,21 +61,21 @@ describe("Class MyArray", () => {
     });
 
     test("returns an empty array when called on empty array", () => {
-      const arr = new Array();
+      const arr = new MyArray();
       const mockCallback = jest.fn();
       const filtered = arr.filter(mockCallback);
-      expect(filtered).toEqual([]);
+      expect(filtered).toEqual(new MyArray());
     });
 
     test("if callback return false filter return empty array", () => {
-      const arr = new Array(1, 2, 4);
+      const arr = new MyArray(1, 2, 4);
       const filtered = arr.filter(val => val <= 0);
-      expect(filtered).toEqual([]);
+      expect(filtered).toEqual(new MyArray());
     });
 
     test("if custom context does not provided, use current context", () => {
       const arr = new MyArray(1, 4, 0);
-      const testArr = [];
+      const testArr = new MyArray();
       const user = {
         name: "ivan",
         testFilter() {
@@ -87,14 +87,14 @@ describe("Class MyArray", () => {
     });
 
     test("thisArg is set as -this- of callbackFunction properly for filter method", () => {
-      const arr = new Array(2, 6, 10, 12, 16);
+      const arr = new MyArray(2, 6, 10, 12, 16);
       const checkNumericRange = function(value) {
         if (typeof value !== "number") return false;
         else return value >= this.minimum && value <= this.maximum;
       };
       const thisArg = { minimum: 10, maximum: 20 };
       const result = arr.filter(checkNumericRange, thisArg);
-      expect(result).toEqual([10, 12, 16]);
+      expect(result).toEqual(new MyArray(10, 12, 16));
     });
   });
 });
