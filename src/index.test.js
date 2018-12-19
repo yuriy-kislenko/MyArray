@@ -38,6 +38,10 @@ describe('Class MyArray', () => {
             expect(arr.slice(-3, 6).toString()).toEqual('5,6');
             expect(arr.slice(-3, -2).toString()).toEqual('5');
         });
+
+        test("if there is 1 argument copy array to end", () => {
+            expect(arr.slice(3).toString()).toEqual('4,5,6,7');
+        });
     });
 
 
