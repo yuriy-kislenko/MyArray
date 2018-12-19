@@ -54,7 +54,7 @@ describe('Class MyArray', () => {
       arr = new MyArray();
       const newEl = 1;
       expect(arr.push(newEl)).toBe(1);
-      expect(arr[arr.length - 1]).toBe(newEl);
+      expect(arr.length).toBe(1);
     });
 
     test("returns undefined if there is no such index", () => {
