@@ -24,7 +24,10 @@ describe('Class MyArray', () => {
       expect(arr.toString()).not.toBeUndefined();
     });
 
-    
+    test('method has to return a string', ()=> {
+      const str = arr.toString();
+      expect(typeof str).toBe('string');
+    });
 
 })
 
