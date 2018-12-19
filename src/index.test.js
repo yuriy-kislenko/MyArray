@@ -20,7 +20,7 @@ describe('Class MyArray', () => {
 
       const expectedLength = initialLength + 3;
       const newLength = arr.push(4, 5, 6);
-      expect(newLength).toEqual(expectedLength);
+      expect(newLength).toBe(expectedLength);
     });
 
     test('method must increment current length by 1, if 1 argument is put ', () => {
@@ -31,28 +31,30 @@ describe('Class MyArray', () => {
     });
 
     test("method doesn't change length, if 0 argument is put", () => {
-      const initialLength = arr.length;
       arr.push();
-      expect(arr.length).toBe(initialLength);
+      expect(arr.length).toBe(3);
     });
 
     test("pushed element must be the last", () => {
       const a = 5;
       arr.push(a);
-      expect(arr[arr.length - 1]).toEqual(a);
+      expect(arr[3]).toBe(a);
     });
 
     test("should allow to add multiple items", () => {
       arr.push(4, 5, 6);
       const expectedArray = [1, 2, 3, 4, 5, 6];
-      expect(arr.length).toEqual(expectedArray.length);
+      expect(arr.length).toBe(expectedArray.length);
+      expect(arr[3]).toBe(4);
+      expect(arr[4]).toBe(5);
+      expect(arr[5]).toBe(6);
     });
 
     test("push 1 element to an empty array, it`s length must be 1", () => {
       arr = new MyArray();
       const newEl = 1;
-      expect(arr.push(newEl)).toEqual(1);
-      expect(arr[arr.length - 1]).toEqual(newEl);
+      expect(arr.push(newEl)).toBe(1);
+      expect(arr[arr.length - 1]).toBe(newEl);
     });
 
     test("returns undefined if there is no such index", () => {
