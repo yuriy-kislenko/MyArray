@@ -12,7 +12,7 @@ describe("Class MyArray", () => {
         }
       };
       user.testForEach();
-      expect(testArr.toString()).toBe("ivan,ivan,ivan");
+      expect(testArr).toEqual(['ivan', 'ivan', 'ivan']);
     });
   });
   describe("tests for method filter", () => {
@@ -32,12 +32,10 @@ describe("Class MyArray", () => {
     });
 
     test("expect callback args to be equal 3", () => {
-
       const arr = new MyArray(1, 3, 5, 8);
-      const mockCallback = jest.fn(x => 42 + x);
+      const mockCallback = jest.fn();
       arr.filter(mockCallback);
       expect(mockCallback.mock.calls[0].length).toBe(3);
-
     });
 
     test("method does not mutate initial array", () => {
@@ -48,9 +46,7 @@ describe("Class MyArray", () => {
 
     test("method must return new Array of current elements which are in check condition", () => {
       let arr = new Array(1, 4, 4, 5, 0, 0);
-      let filtered = arr.filter(val => {
-        return val >= 4;
-      });
+      let filtered = arr.filter(val => val >= 4);
       expect(filtered).toEqual([4, 4, 5]);
     });
 
@@ -66,17 +62,14 @@ describe("Class MyArray", () => {
 
     test("returns an empty array when called on empty array", () => {
       let arr = new Array();
-      let filtered = arr.filter(val => {
-        return val >= 4;
-      });
+      let mockCallback = jest.fn();
+      let filtered = arr.filter(mockCallback);
       expect(filtered).toEqual([]);
     });
 
     test("if callback return false filter return empty array", () => {
       let arr = new Array(1, 2, 4);
-      let filtered = arr.filter(val => {
-        return val <= 0;
-      });
+      let filtered = arr.filter(val => val <= 0 );
       expect(filtered).toEqual([]);
     });
 
@@ -90,7 +83,7 @@ describe("Class MyArray", () => {
         }
       };
       user.testForEach();
-      expect(testArr).toEqual(['ivan', 'ivan', 'ivan']);
+      expect(testArr).toEqual(['ivan','ivan','ivan']);
     });
 
     test("thisArg is set as -this- of callbackFunction properly for filter method", () => {
