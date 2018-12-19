@@ -103,6 +103,16 @@ describe('Class MyArray', () => {
       expect(callback.mock.calls.length).toBe(3);
     });
   
+  //5
+    test('callback must include the originalArray as third argument', () => {
+      const callback = jest.fn();
+      const originArr = new MyArray(1, 4, 0);
+      originArr.find(callback);
+  
+      expect(callback.mock.calls[0][2]).toEqual(originArr);
+      expect(callback.mock.calls[1][2]).toEqual(originArr);
+      expect(callback.mock.calls[2][2]).toEqual(originArr);
+      });
   });
 
 });
