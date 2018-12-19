@@ -80,6 +80,14 @@ describe('Class MyArray', () => {
       const arr = new MyArray(1, 4, 0);
       expect(arr.hasOwnProperty("reduce")).toBeFalsy();
     });
+    test("Method shouldn't mutate initial array", () => {
+      const arr = new MyArray(1, 2, 3);
+      const mockCallback = jest.fn();
+      const new1 = arr;
+      arr.reduce(mockCallback);
+      const new2 = arr;
+      expect(new1).toEqual(new2);
+    });
   });
 
 });
