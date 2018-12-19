@@ -2,7 +2,7 @@ import MyArray from './index';
 
 describe('Class MyArray', () => {
 
-  describe('Test method forEach of class Array', () => {
+  describe('tests for method forEach', () => {
 
     let arr;
 
@@ -20,41 +20,42 @@ describe('Class MyArray', () => {
     
     test('does not mutate initial arr if we do nothing inside the cb ', () => {
       arr.forEach(a => a);
-      expect(arr.toString()).toBe('1,4,0');
-      arr.forEach((v, i, arr) => arr[0] = 10);
-      expect(arr.toString()).toBe('10,4,0');
+      expect(arr).toEqual(new MyArray(1, 4, 0));
+
     });
 
-    test('if custom context doesnt provided, use current context ', () => {
+    test("if custom context doesn't provided, use current context ", () => {
       const testArr = [];
       const user = {
         name: 'ivan',
         testForEach () {
-      arr.forEach( () => {testArr.push(this.name)});
-          }
+          arr.forEach( () => {testArr.push(this.name)});
         }
-      user.testForEach()
-      expect(testArr.toString()).toBe('ivan,ivan,ivan')
+      };
+      user.testForEach();
+      expect(testArr.toString()).toEqual('ivan,ivan,ivan');
     });
 
     test('callback is executed once for each element in the array ', () => {
       const mockCallback = jest.fn(x => 42 + x);
       arr.forEach(mockCallback);
-      expect(mockCallback.mock.calls.length).toBe(3);
+      expect(mockCallback.mock.calls[0][0]).toBe(arr[0]);
+      expect(mockCallback.mock.calls[1][0]).toBe(arr[1]);
+      expect(mockCallback.mock.calls[2][0]).toBe(arr[2]);
     });
 
     test('expect callback args to be equal 3', () => {
-      let argumentsCount;
-      const mockCallback = jest.fn( (v, i, arr) => lengthOfArguments = arguments.length);
+      const mockCallback = jest.fn(x => 42 + x);
       arr.forEach(mockCallback);
-      
-      expect(argumentsCount).toBe(3);
+      expect(mockCallback.mock.calls[0].length).toBe(3);
     });
 
-    test('It should pass in the index of each postiion in originalArray as second argument to callback ', () => {
+    test('It should pass in the index of each position in originalArray as second argument to callback ', () => {
       const mockCallback = jest.fn( (v, i, arr) =>  i);
       arr.forEach(mockCallback);
-      expect(mockCallback.mock.results[0].value).toBe(0);
+      expect(mockCallback.mock.calls[0][1]).toBe(0);
+      expect(mockCallback.mock.calls[1][1]).toBe(1);
+      expect(mockCallback.mock.calls[2][1]).toBe(2);
     });
 
     test('method should return undefined ', () => {
@@ -67,16 +68,16 @@ describe('Class MyArray', () => {
       const user = {
         name: 'ivan',
         testForEach () {
-        arr.forEach(function () {
-          testArr.push(this.name)
+          arr.forEach(function () {
+            testArr.push(this.name)
           }, user2);
         }
-      }
+      };
       const user2 = {
         name: 'ivan2'
-      }
+      };
       user.testForEach();
-      expect(testArr.toString()).toBe('ivan2,ivan2,ivan2')
+      expect(testArr.toString()).toEqual('ivan2,ivan2,ivan2');
     });
 
 })
