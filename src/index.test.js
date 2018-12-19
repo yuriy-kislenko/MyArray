@@ -20,17 +20,17 @@ describe('Class MyArray', () => {
 
     test('the toString result of empty arr must be an empty string and not undefined', ()=> {
       arr = new MyArray(0);
-      expect(arr.toString()).toMatch(/^$/);
+      expect(arr.toString()).toBe('');
       expect(arr.toString()).not.toBeUndefined();
     });
 
     test('method has to return a string', ()=> {
       const str = arr.toString();
-      expect(typeof str).toEqual('string');
+      expect(typeof str).toBe('string');
     });
 
     test('returns a comma separated list of elements', ()=> {
-      expect(arr.toString()).toMatch(/^([^,\s]+,)*([^,\s]+,)*[^,\s]+$/);
+      expect(arr.toString()).toBe('1,2,3,4');
     });
 
   });
