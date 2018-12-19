@@ -49,12 +49,13 @@ describe('Class MyArray', () => {
     test('returns an empty array when called on empty array', () => {
     const arr = new MyArray();
     expect(arr.map((num) => num + 1)).toEqual(new MyArray());
-    expect(arr.map((num) => num + 1).length).toEqual(new MyArray().length);
+    expect(arr.map((num) => num + 1).length).toBe(0);
+
     });
 // 8
     test('if custom context doesn\'t provided, use current context', () => {
     const arr = new MyArray(1, 4, 0);
-    const testArr = new MyArray();
+    const testArr = [];
     const user = {
     name: 'ivan',
      testMap () {
@@ -62,7 +63,7 @@ describe('Class MyArray', () => {
      }
     }
     user.testMap();
-    expect(testArr).toEqual(new MyArray('ivan', 'ivan', 'ivan'));
+    expect(testArr).toEqual(['ivan', 'ivan', 'ivan']);
     });
 
 //9
