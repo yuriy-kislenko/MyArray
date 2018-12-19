@@ -68,6 +68,17 @@ describe('Class MyArray', () => {
 
     });
 
+
+  });
+
+  describe('tests for method find', () => {
+  //1
+    test("returns undefined if there is no such element", () => {
+      const arr = new MyArray(2,4,5);
+      const callback = (x) => x > 10; 
+      expect(arr.find(callback)).toBeUndefined();
+    });
+  
   });
 
 });
