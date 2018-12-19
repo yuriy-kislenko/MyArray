@@ -115,10 +115,17 @@ describe('Class MyArray', () => {
       });
 
   //6
-      test('instance has not Own Property map', () => {
-        const arr = new MyArray(1, 4, 0);
-        expect(arr.hasOwnProperty('find')).toBeFalsy();
+    test('instance has not Own Property map', () => {
+      const arr = new MyArray(1, 4, 0);
+      expect(arr.hasOwnProperty('find')).toBeFalsy();
       });
-  });
+
+  //7
+    test('instance has method find', () => {
+      const arr = new MyArray(1, 4, 0);
+      expect(arr.find).toBeInstanceOf(Function);
+      });
+    
+    });
 
 });
