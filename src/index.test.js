@@ -29,6 +29,10 @@ describe('Class MyArray', () => {
       expect(typeof str).toBe('string');
     });
 
+    test('returns a comma separated list of elements', ()=> {
+      expect(arr.toString()).toMatch(/(.+,)*\d+$/);
+    });
+
 })
 
 
