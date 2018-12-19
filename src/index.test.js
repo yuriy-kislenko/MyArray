@@ -90,11 +90,11 @@ describe('Class MyArray', () => {
     });
     test("callback has to be a function", () => {
       let callback = 1212121;
-      const arr = new Array(1, 4, 4, 5, 0, 0);
+      const arr = new MyArray(1, 4, 4, 5, 0, 0);
       expect(()=>{arr.reduce(callback)}).toThrow();
     });
     test("If an array is empty but there is an InitialValue as a parameter", () => {
-      let arr = new Array();
+      let arr = new MyArray();
       const mockCallback = jest.fn();
       let thisArg = { minimum: 10, maximum: 20 };
       let result = arr.reduce(mockCallback, thisArg);
