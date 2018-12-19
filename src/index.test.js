@@ -1,6 +1,67 @@
 import MyArray from './index';
 
 describe('Class MyArray', () => {
+  describe('tests for push method', () => {
+    let arr;
+    beforeEach(() => {
+      arr = new MyArray(1, 2, 3);
+    });
+
+    test('instance should have method push', () => {
+      expect(arr.push).toBeInstanceOf(Function);
+    });
+
+    test('instance has not own property push', () => {
+      expect(arr.hasOwnProperty('push')).toBeFalsy();
+    });
+
+    test('method returns new length', () => {
+      const initialLength = arr.length;
+
+      const expectedLength = initialLength + 3;
+      const newLength = arr.push(4, 5, 6);
+      expect(newLength).toBe(expectedLength);
+    });
+
+    test('method must increment current length by 1, if 1 argument is put ', () => {
+      const initialLength = arr.length;
+      arr.push(2);
+      const expectedLength = initialLength + 1;
+      expect(arr.length).toBe(expectedLength);
+    });
+
+    test("method doesn't change length, if 0 argument is put", () => {
+      arr.push();
+      expect(arr.length).toBe(3);
+    });
+
+    test("pushed element must be the last", () => {
+      const a = 5;
+      arr.push(a);
+      expect(arr[3]).toBe(a);
+    });
+
+    test("should allow to add multiple items", () => {
+      arr.push(4, 5, 6);
+      const expectedArray = [1, 2, 3, 4, 5, 6];
+      expect(arr.length).toBe(expectedArray.length);
+      expect(arr[3]).toBe(4);
+      expect(arr[4]).toBe(5);
+      expect(arr[5]).toBe(6);
+    });
+
+    test("push 1 element to an empty array, it`s length must be 1", () => {
+      arr = new MyArray();
+      const newEl = 1;
+      expect(arr.push(newEl)).toBe(1);
+      expect(arr.length).toBe(1);
+    });
+
+    test("returns undefined if there is no such index", () => {
+      arr.push(5);
+      expect(arr[arr.length]).toBeUndefined();
+    });
+  });
 
   describe('tests for method map', () => {
 // 1
@@ -93,226 +154,115 @@ describe('Class MyArray', () => {
         
     });
   });
-//map
+
+  describe('tests for method pop', () => {
+    let arr;
+
+    beforeEach(() => {
+      arr = new MyArray(1,4,0)
+    });
+
+    test('instance has method pop', () => {
+      expect(arr.pop).toBeInstanceOf(Function);
+    });
+
+    test('instance has not Own Property pop', () => {
+      expect(arr.hasOwnProperty('pop')).toBeFalsy();
+    });
+
+    test('Method must return deleted element', () => {
+      expect(arr.pop()).toBe(0);
+    });
+
+    test('Method must delete last element from array', () => {
+      const deleted = arr.pop();
+
+      expect(arr[3]).toBeUndefined();
+      expect(deleted).toBe(0);
+    });
+
+    test('Length of array must reduce by 1', () => {
+      arr.pop();
+
+      expect(arr.length).toBe(2);
+    });
+
+    test('must work correctly with empty array', () => {
+      const arrEmpty = new MyArray();
+
+      expect(arrEmpty.pop()).toBeUndefined();
+    });
+
+    test('Empty array length always must be 0', () => {
+      const arrEmpty = new MyArray();
+      const initialLength = arrEmpty.length;
+      arr.pop();
+      arr.pop();
+      const finalLength = arrEmpty.length;
+
+      expect(initialLength).toBe(0);
+      expect(finalLength).toBe(0);
+
+    });
+
+
+  });
+
+  describe('tests for method find', () => {
+  //1
+    test("returns undefined if there is no such element", () => {
+      const arr = new MyArray(2,4,5);
+      const callback = (x) => x > 10; 
+      expect(arr.find(callback)).toBeUndefined();
+    });
+    
+  //2  
+    test('returns the first element that satisfies the expression', () => {
+      const callback = (x)=> x > 1;
+      const arr = new MyArray(1, 2, 3);
+      expect(arr.find(callback)).toBe(2);
+    });
+  
+  //3
+    test('trhow error if callback is not a function', () => {
+      const callback = "";
+      const arr = new MyArray(1, 2, 3); 
+      expect(() => {arr.find(callback)}).toThrow();
+      
+      
+    });
+  
+  //4
+    test('expect callbacks args length to be equal 3', () => {
+      const callback = jest.fn();
+      const arr = new MyArray(1, 2, 3);
+      arr.find(callback);
+      expect(callback.mock.calls.length).toBe(3);
+    });
+  
+  //5
+    test('callback must include the originalArray as third argument', () => {
+      const callback = jest.fn();
+      const originArr = new MyArray(1, 4, 0);
+      originArr.find(callback);
+  
+      expect(callback.mock.calls[0][2]).toBe(originArr);
+      expect(callback.mock.calls[1][2]).toBe(originArr);
+      expect(callback.mock.calls[2][2]).toBe(originArr);
+    });
+
+  //6
+    test('instance has not Own Property map', () => {
+      const arr = new MyArray(1, 4, 0);
+      expect(arr.hasOwnProperty('find')).toBeFalsy();
+    });
+
+  //7
+    test('instance has method find', () => {
+      const arr = new MyArray(1, 4, 0);
+      expect(arr.find).toBeInstanceOf(Function);
+    });
+    
+  });
 
 });
-
-  describe('tests for method pop', () => {
-    let arr;
-
-    beforeEach(() => {
-      arr = new MyArray(1,4,0)
-    });
-
-    test('instance has method pop', () => {
-      expect(arr.pop).toBeInstanceOf(Function);
-    });
-
-    test('instance has not Own Property pop', () => {
-      expect(arr.hasOwnProperty('pop')).toBeFalsy();
-    });
-
-    test('Method must return deleted element', () => {
-      expect(arr.pop()).toBe(0);
-    });
-
-    test('Method must delete last element from array', () => {
-      const deleted = arr.pop();
-
-      expect(arr[3]).toBeUndefined();
-      expect(deleted).toBe(0);
-    });
-
-    test('Length of array must reduce by 1', () => {
-      arr.pop();
-
-      expect(arr.length).toBe(2);
-    });
-
-    test('must work correctly with empty array', () => {
-      const arrEmpty = new MyArray();
-
-      expect(arrEmpty.pop()).toBeUndefined();
-    });
-
-    test('Empty array length always must be 0', () => {
-      const arrEmpty = new MyArray();
-      const initialLength = arrEmpty.length;
-      arr.pop();
-      arr.pop();
-      const finalLength = arrEmpty.length;
-
-      expect(initialLength).toBe(0);
-      expect(finalLength).toBe(0);
-
-    });
-
-
-  });
-
-  describe('tests for method find', () => {
-  //1
-    test("returns undefined if there is no such element", () => {
-      const arr = new MyArray(2,4,5);
-      const callback = (x) => x > 10; 
-      expect(arr.find(callback)).toBeUndefined();
-    });
-    
-  //2  
-    test('returns the first element that satisfies the expression', () => {
-      const callback = (x)=> x > 1;
-      const arr = new MyArray(1, 2, 3);
-      expect(arr.find(callback)).toBe(2);
-    });
-  
-  //3
-    test('trhow error if callback is not a function', () => {
-      const callback = "";
-      const arr = new MyArray(1, 2, 3); 
-      expect(() => {arr.find(callback)}).toThrow();
-      
-      
-    });
-  
-  //4
-    test('expect callbacks args length to be equal 3', () => {
-      const callback = jest.fn();
-      const arr = new MyArray(1, 2, 3);
-      arr.find(callback);
-      expect(callback.mock.calls.length).toBe(3);
-    });
-  
-  //5
-    test('callback must include the originalArray as third argument', () => {
-      const callback = jest.fn();
-      const originArr = new MyArray(1, 4, 0);
-      originArr.find(callback);
-  
-      expect(callback.mock.calls[0][2]).toBe(originArr);
-      expect(callback.mock.calls[1][2]).toBe(originArr);
-      expect(callback.mock.calls[2][2]).toBe(originArr);
-    });
-
-  //6
-    test('instance has not Own Property map', () => {
-      const arr = new MyArray(1, 4, 0);
-      expect(arr.hasOwnProperty('find')).toBeFalsy();
-    });
-
-  //7
-    test('instance has method find', () => {
-      const arr = new MyArray(1, 4, 0);
-      expect(arr.find).toBeInstanceOf(Function);
-    });
-    
-  });
-    
-  describe('tests for method pop', () => {
-    let arr;
-
-    beforeEach(() => {
-      arr = new MyArray(1,4,0)
-    });
-
-    test('instance has method pop', () => {
-      expect(arr.pop).toBeInstanceOf(Function);
-    });
-
-    test('instance has not Own Property pop', () => {
-      expect(arr.hasOwnProperty('pop')).toBeFalsy();
-    });
-
-    test('Method must return deleted element', () => {
-      expect(arr.pop()).toBe(0);
-    });
-
-    test('Method must delete last element from array', () => {
-      const deleted = arr.pop();
-
-      expect(arr[3]).toBeUndefined();
-      expect(deleted).toBe(0);
-    });
-
-    test('Length of array must reduce by 1', () => {
-      arr.pop();
-
-      expect(arr.length).toBe(2);
-    });
-
-    test('must work correctly with empty array', () => {
-      const arrEmpty = new MyArray();
-
-      expect(arrEmpty.pop()).toBeUndefined();
-    });
-
-    test('Empty array length always must be 0', () => {
-      const arrEmpty = new MyArray();
-      const initialLength = arrEmpty.length;
-      arr.pop();
-      arr.pop();
-      const finalLength = arrEmpty.length;
-
-      expect(initialLength).toBe(0);
-      expect(finalLength).toBe(0);
-
-    });
-
-
-  });
-
-  describe('tests for method find', () => {
-  //1
-    test("returns undefined if there is no such element", () => {
-      const arr = new MyArray(2,4,5);
-      const callback = (x) => x > 10; 
-      expect(arr.find(callback)).toBeUndefined();
-    });
-    
-  //2  
-    test('returns the first element that satisfies the expression', () => {
-      const callback = (x)=> x > 1;
-      const arr = new MyArray(1, 2, 3);
-      expect(arr.find(callback)).toBe(2);
-    });
-  
-  //3
-    test('trhow error if callback is not a function', () => {
-      const callback = "";
-      const arr = new MyArray(1, 2, 3); 
-      expect(() => {arr.find(callback)}).toThrow();
-      
-      
-    });
-  
-  //4
-    test('expect callbacks args length to be equal 3', () => {
-      const callback = jest.fn();
-      const arr = new MyArray(1, 2, 3);
-      arr.find(callback);
-      expect(callback.mock.calls.length).toBe(3);
-    });
-  
-  //5
-    test('callback must include the originalArray as third argument', () => {
-      const callback = jest.fn();
-      const originArr = new MyArray(1, 4, 0);
-      originArr.find(callback);
-  
-      expect(callback.mock.calls[0][2]).toBe(originArr);
-      expect(callback.mock.calls[1][2]).toBe(originArr);
-      expect(callback.mock.calls[2][2]).toBe(originArr);
-      });
-
-  //6
-    test('instance has not Own Property map', () => {
-      const arr = new MyArray(1, 4, 0);
-      expect(arr.hasOwnProperty('find')).toBeFalsy();
-      });
-
-  //7
-    test('instance has method find', () => {
-      const arr = new MyArray(1, 4, 0);
-      expect(arr.find).toBeInstanceOf(Function);
-      });
-    
-  });
