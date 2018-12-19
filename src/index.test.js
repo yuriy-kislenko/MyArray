@@ -13,7 +13,7 @@ describe("Class MyArray", () => {
     });
 
     test("If custom context is provided, use its context", () => {
-      const objectAside = Object.create({ 0: 2 });
+      const objectAside = { 0: 2 };
       const arr = MyArray.from(
         [10, 20, 30],
         function(x) {
