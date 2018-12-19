@@ -97,17 +97,22 @@ describe('Class MyArray', () => {
     test("If an array is empty but there is an InitialValue as a parameter", () => {
       let arr = new Array();
       const mockCallback = jest.fn();
-      
       let thisArg = { minimum: 10, maximum: 20 };
       let result = arr.reduce(mockCallback, thisArg);
       expect(result).toEqual(thisArg);
     });
     test('initialValue is not passed', () => {
       const arr = new MyArray(1, 2);
-    
       arr.reduce((accum, curr, i) => {
       expect(accum).toEqual(arr[0]);
       });
+    });
+    test('empty array and initialValue is not passed', () => {
+      const arr = new MyArray();
+      const callReduceOnEmptyArray = () => {
+        arr.reduce(() => 0);
+      };
+      expect(callReduceOnEmptyArray).toThrow(TypeError);
     });
     
 
