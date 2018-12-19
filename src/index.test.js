@@ -64,7 +64,7 @@ describe('Class MyArray', () => {
       // }
 
 
-   });*/
+   });*/ 
 
 
    test('should work correctly with comparator', () => {
@@ -88,8 +88,6 @@ describe('Class MyArray', () => {
       expect(comparatorLength).toEqual(2);
    });
 
-   //add more...try 1,2,11,22
-
    test('should work correctly without comparator', () => {
 
       const arr = new MyArray("b","c","a");
@@ -98,16 +96,12 @@ describe('Class MyArray', () => {
       expect(arr2.sort()).toEqual([1,11,12,2]);
    });
 
-   //it is not clear, by default we work with data as string
-
-   test('lowest element shoud be at the begining of array', () => {
+   test('string elements should be sorted by UNICODE', () => {
 
       const arr = new MyArray("h","d","m");
       arr.sort();
       expect(arr[0]).toEqual("d");
    });
-
-   //add more assertions
 
    test('undefined shoud be at the end of array', () => {
 
@@ -124,12 +118,12 @@ describe('Class MyArray', () => {
       expect(arr1).toEqual([1,2,3,undefined,undefined,undefined]);
    });
 
-//use toBe or Equal
    test('arr length before using sort == arr length after using it', () => {
 
-      const arr = new MyArray(undefined, 3,2,1);
-      const arr2 = arr.sort();
-      expect(arr.length).toEqual(arr2.length);
+      const arr1 = new MyArray(3,2,1).length;
+      const arr2 = new MyArray(3,2,1).sort().length;  
+
+      expect(arr1==arr2).toBeTruthy();
    });
 
    test('numbers should be sorted as strings without comparator', () => {
