@@ -14,6 +14,10 @@ describe('Class MyArray', () => {
       expect(arr.toString).toBeInstanceOf(Function);
     });
 
+    test('instance has not Own Property toString', ()=> {
+      expect(arr.hasOwnProperty('toString')).toBeFalsy();
+    });
+
 })
 
 
