@@ -28,44 +28,13 @@ describe('Class MyArray', () => {
       const arr = new MyArray(1,4,0);
       expect(arr.hasOwnProperty('sort')).toBeFalsy();
    });
+  
+   test('Throw error if comparator is not a function or undefined', () => {
 
-    //point me the place where you testing comparator of method sort
-
-   /* test('error if comparator is not a function or not undefined', () => {
-
-      let isComparator = false;
-      let undefComparator = false;
-      let z;
-
-      // let comparator = function(a,b){
-      //   isComparator = true;
-      //   return a-b;
-      // };
-      let comparator = 1;
-      // if(z == undefined){
-
-      //   undefComparator = true;
-      // }
-      console.log(MyArray(1,4,0).sort(comparator))
-      expect(MyArray(1,4,0).sort(comparator)).toThrow(TypeError);
-      // const arr2 = new MyArray(1,4,0).sort(z);
-
-      // expect(undefComparator).toBe(true);
-      // expect(isComparator).toBe(true);
-
-
-      // try{
-      //   expect(comparator).toBeInstanceOf(Function);
-
-      // }catch(e){
-      //   console.log('ERROR IS '+ e);
-      //   //expect(e).toBe(TypeError);
-
-      // }
-
-
-   });*/ 
-
+    let arr1 = new MyArray(1,2,3);
+    let comparator = 1;
+    expect(()=>arr1.sort(comparator)).toThrow();
+   });
 
    test('should work correctly with comparator', () => {
 
