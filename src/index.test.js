@@ -33,6 +33,11 @@ describe('Class MyArray', () => {
             expect(arr.slice(1).toString()).toEqual('2,3,4,5,6,7');
             expect(arr.slice(1,2).toString()).toEqual('2');
         });
+
+        test("if index is negative start from the end", () => {
+            expect(arr.slice(-3, 6).toString()).toEqual('5,6');
+            expect(arr.slice(-3, -2).toString()).toEqual('5');
+        });
     });
 
 
