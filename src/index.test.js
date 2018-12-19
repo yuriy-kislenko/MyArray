@@ -119,7 +119,33 @@ describe('Class MyArray', () => {
       let z = arr.reduce(muckCallback, 0);
       expect(muckCallback.mock.calls.length).toBe(4);
     });
-   
+    describe("tests for initial value", () => {
+      test('initial value is null', () => {
+        const arr = new MyArray(1, 2);
+        const testResult = arr.reduce(acc => acc, null);
+        expect(testResult).toBeNull();
+      });
+      test('initial value is false', () => {
+        const arr = new MyArray(1, 2);
+        const testResult = arr.reduce(acc => acc, false);
+        expect(testResult).toBeFalsy();
+      });
+      test('initial value is 0', () => {
+        const arr = new MyArray(1, 2);
+        const testResult = arr.reduce(acc => acc, 0);
+        expect(testResult).toEqual(0);
+      });
+      test('initial value is \'\'', () => {
+        const arr = new MyArray(1, 2);
+        const testResult = arr.reduce(acc => acc, '');
+        expect(testResult).toEqual('');
+      });
+      test('initial value is NaN', () => {
+        const arr = new MyArray(1, 2);
+        const testResult = arr.reduce(acc => acc, NaN);
+        expect(testResult).toEqual(NaN);
+      });
+    });
   });
 
 });
