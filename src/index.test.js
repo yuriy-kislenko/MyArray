@@ -95,6 +95,14 @@ describe('Class MyArray', () => {
       
     });
   
+  //4
+    test('expect  callbacks args length to be equal 3', () => {
+      const callback = jest.fn();
+      const arr = new MyArray(1, 2, 3);
+      arr.find(callback);
+      expect(callback.mock.calls.length).toBe(3);
+    });
+  
   });
 
 });
