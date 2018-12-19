@@ -76,6 +76,10 @@ describe('Class MyArray', () => {
       const arr = new MyArray(1, 4, 0);
       expect(arr.reduce).toBeInstanceOf(Function);
     });
+    test("instance has  Own Property reduce", () => {
+      const arr = new MyArray(1, 4, 0);
+      expect(arr.hasOwnProperty("reduce")).toBeFalsy();
+    });
   });
 
 });
