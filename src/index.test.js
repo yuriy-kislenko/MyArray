@@ -23,6 +23,10 @@ describe('Class MyArray', () => {
             expect(arr.slice()).not.toBe(initialArray);
         });
 
+        test("new array must be an instance of My Array", () => {
+            expect(arr.slice()).toBeInstanceOf(MyArray);
+        });
+
     });
 
 
