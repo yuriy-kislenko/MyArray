@@ -32,13 +32,12 @@ describe("Class MyArray", () => {
     });
 
     test("expect callback args to be equal 3", () => {
-      let lengthOfArguments;
-      function callback(x) {
-        lengthOfArguments = arguments.length;
-        return x + 10;
-      }
-      new MyArray(1, 10, 20).filter(callback);
-      expect(lengthOfArguments).toBe(3);
+
+      const arr = new MyArray(1, 3, 5, 8);
+      const mockCallback = jest.fn(x => 42 + x);
+      arr.filter(mockCallback);
+      expect(mockCallback.mock.calls[0].length).toBe(3);
+
     });
 
     test("method does not mutate initial array", () => {
