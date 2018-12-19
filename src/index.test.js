@@ -12,7 +12,7 @@ describe("Class MyArray", () => {
         }
       };
       user.testForEach();
-      expect(testArr).toEqual(['ivan', 'ivan', 'ivan']);
+      expect(testArr).toEqual(["ivan", "ivan", "ivan"]);
     });
   });
   describe("tests for method filter", () => {
@@ -45,14 +45,14 @@ describe("Class MyArray", () => {
     });
 
     test("method must return new Array of current elements which are in check condition", () => {
-      let arr = new Array(1, 4, 4, 5, 0, 0);
-      let filtered = arr.filter(val => val >= 4);
+      const arr = new Array(1, 4, 4, 5, 0, 0);
+      const filtered = arr.filter(val => val >= 4);
       expect(filtered).toEqual([4, 4, 5]);
     });
 
     test("callback has to be a function", () => {
       let isCallback = false;
-      let callback = x => {
+      const callback = x => {
         isCallback = true;
         return x + 1;
       };
@@ -61,15 +61,15 @@ describe("Class MyArray", () => {
     });
 
     test("returns an empty array when called on empty array", () => {
-      let arr = new Array();
-      let mockCallback = jest.fn();
-      let filtered = arr.filter(mockCallback);
+      const arr = new Array();
+      const mockCallback = jest.fn();
+      const filtered = arr.filter(mockCallback);
       expect(filtered).toEqual([]);
     });
 
     test("if callback return false filter return empty array", () => {
-      let arr = new Array(1, 2, 4);
-      let filtered = arr.filter(val => val <= 0 );
+      const arr = new Array(1, 2, 4);
+      const filtered = arr.filter(val => val <= 0);
       expect(filtered).toEqual([]);
     });
 
@@ -78,22 +78,22 @@ describe("Class MyArray", () => {
       const testArr = [];
       const user = {
         name: "ivan",
-        testForEach() {
-          arr.forEach(() => testArr.push(this.name));
+        testFilter() {
+          arr.filter(() => testArr.push(this.name));
         }
       };
-      user.testForEach();
-      expect(testArr).toEqual(['ivan','ivan','ivan']);
+      user.testFilter();
+      expect(testArr).toEqual(["ivan", "ivan", "ivan"]);
     });
 
     test("thisArg is set as -this- of callbackFunction properly for filter method", () => {
-      let arr = new Array(2, 6, 10, 12, 16);
-      let checkNumericRange = function(value) {
+      const arr = new Array(2, 6, 10, 12, 16);
+      const checkNumericRange = function(value) {
         if (typeof value !== "number") return false;
         else return value >= this.minimum && value <= this.maximum;
       };
-      let thisArg = { minimum: 10, maximum: 20 };
-      let result = arr.filter(checkNumericRange, thisArg);
+      const thisArg = { minimum: 10, maximum: 20 };
+      const result = arr.filter(checkNumericRange, thisArg);
       expect(result).toEqual([10, 12, 16]);
     });
   });
