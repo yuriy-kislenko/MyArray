@@ -92,7 +92,6 @@ describe('Class MyArray', () => {
       let callback = 1212121;
       const arr = new Array(1, 4, 4, 5, 0, 0);
       expect(()=>{arr.reduce(callback)}).toThrow();
-
     });
     test("If an array is empty but there is an InitialValue as a parameter", () => {
       let arr = new Array();
@@ -107,15 +106,20 @@ describe('Class MyArray', () => {
       expect(accum).toEqual(arr[0]);
       });
     });
-    test('empty array and initialValue is not passed', () => {
+    test('If an array is empty and initialValue is absent, reduce has to return TypeError', () => {
       const arr = new MyArray();
       const callReduceOnEmptyArray = () => {
         arr.reduce(() => 0);
       };
       expect(callReduceOnEmptyArray).toThrow(TypeError);
     });
-    
-
+    test('As an another option of previous test - the number of using callback function is the same as quantity', () => {
+      const arr = new MyArray(1,2,3,5);
+      const muckCallback = jest.fn();
+      let z = arr.reduce(muckCallback, 0);
+      expect(muckCallback.mock.calls.length).toBe(4);
+    });
+   
   });
 
 });
