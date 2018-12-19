@@ -32,7 +32,7 @@ describe('Class MyArray', () => {
     test('Throw error if comparator is not a function or undefined', () => {
       let arr1 = new MyArray(1, 2, 3);
       let comparator = 1;
-      
+
       expect(()=>arr1.sort(comparator)).toThrow();
     });
 
@@ -47,8 +47,9 @@ describe('Class MyArray', () => {
 
     test('comparator must accepts two arguments', () => {
      const arr = new MyArray(4, 0).sort(comparator);
+     let comparatorLength;
      function comparator(a, b){
-     let comparatorLength = arguments.length;
+      comparatorLength = arguments.length;
       return a-b;
     }
 
@@ -102,15 +103,15 @@ describe('Class MyArray', () => {
       const arr1 = new MyArray(1, 10, 2, 21);
       const arr2 = new MyArray(3, 40, 24, 1);
 
-      expect(arr1.sort((a, b)=> a - b)).toEqual([1, 2, 10, 21]);
-      expect(arr2.sort((a, b)=> b - a)).toEqual([40, 24, 3, 1]);
+      expect(arr1.sort((a, b) => a - b)).toEqual([1, 2, 10, 21]);
+      expect(arr2.sort((a, b) => b - a)).toEqual([40, 24, 3, 1]);
     });
 
     test('arr should be mutated', () => {
       const arr = new MyArray(1, 2, 10, 21);
 
       arr.sort();
-      expect(arr).toEqual([1, 10, 2, 21]);
+      expect(arr).toEqual(new MyArray(1, 10, 2, 21));
     });
   });
 });
