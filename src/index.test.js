@@ -117,6 +117,10 @@ describe('Class MyArray', () => {
       let z = arr.reduce(mockCallback, 0);
       expect(mockCallback.mock.calls.length).toBe(4);
     });
+    test("Method reduce's callback should be a function", () => {
+      const arr = new MyArray(1, 4, 0);
+      expect(arr.reduce).toBeInstanceOf(Function);
+    });
     describe("tests for initial value", () => {
       test('initial value is null', () => {
         const arr = new MyArray(1, 2);
@@ -149,10 +153,7 @@ describe('Class MyArray', () => {
         expect(mockCallback.mock.calls[0][0]).toEqual(NaN);
       });
     });
-    test("Method reduce's callback should be a function", () => {
-      const arr = new MyArray(1, 4, 0);
-      expect(arr.reduce).toBeInstanceOf(Function);
-    });
+    
   });
 
 });
