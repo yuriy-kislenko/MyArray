@@ -16,7 +16,7 @@ describe('tests for spread', () => {
 
   test('array must work with operator spread', () => {
     const arr2 = new MyArray (1, 4, { name: 'ivan' });
-    const arr1 = new Array(0, ...arr2, 5);
+    const arr1 = [0, ...arr2];
 
     expect(arr1[0]).toBe(0);
     expect(arr1[1]).toBe(1);
