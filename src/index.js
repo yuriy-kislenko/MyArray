@@ -1,4 +1,5 @@
 // const MyArray = Array;
+// export default MyArray;
 
 class MyArray {
   constructor() {

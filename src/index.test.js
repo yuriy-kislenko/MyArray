@@ -12,7 +12,7 @@ describe("Class MyArray", () => {
       expect(arr.hasOwnProperty("from")).toBeFalsy();
     });
 
-    test("If custom context is provided, use its context", () => {
+    test("If custom context is provided, use provided context", () => {
       const objectAside = { 0: 2 };
       const arr = MyArray.from(
         [10, 20, 30],
@@ -26,7 +26,9 @@ describe("Class MyArray", () => {
 
     test("Method FROM must return new instance of MyArray with current elements", () => {
       const arr = MyArray.from([10, 20, 30]);
+      const arrControl = { 0: 10, 1: 20, 2: 30 };
       expect(arr).toBeInstanceOf(MyArray);
+      expect(arr).toEqual(arrControl);
     });
 
     test("Method FROM can include 1, 2 or 3 arguments", () => {
@@ -54,7 +56,7 @@ describe("Class MyArray", () => {
       const baseArr = [1, 2, 3];
       const arrayLine = MyArray.from(baseArr);
 
-      expect(String(baseArr)).toEqual(String(arrayLine));
+      expect(String(baseArr)).toBe(String(arrayLine));
     });
   });
 });
