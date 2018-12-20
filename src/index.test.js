@@ -126,7 +126,7 @@ describe('Class MyArray', () => {
       const arr = new MyArray(1, 4, 0);
       expect(arr.hasOwnProperty('map')).toBeFalsy();
     });
-//3
+// 3
     test('callback must include the originalArray as third argument', () => {
       const mockCallback = jest.fn();
       const originArr = new MyArray(1, 4, 0);
@@ -141,7 +141,7 @@ describe('Class MyArray', () => {
       const arr = new MyArray(1, 4, 0);
       expect(arr.map((num) => num + 5)).toBeInstanceOf(MyArray);
     });
-//5
+// 5
     test('should use callback at each element of array', () => {
       const mockCallback = jest.fn(num => num * 10);
       const arr = new MyArray(5, 4, 3);
@@ -151,58 +151,159 @@ describe('Class MyArray', () => {
       expect(mockCallback.mock.results[1].value).toBe(40);
       expect(mockCallback.mock.results[2].value).toBe(30);
     });
-//6 
+// 6 
     test("method map shouldn't mutate initial array", () => {
       const arr = new MyArray(5, 4, 3);
       arr.map((num) => num + 1);
 
       expect(arr).toEqual(new MyArray(5, 4, 3));
     });
-//7
+// 7
     test('returns an empty array when called on empty array', () => {
-    const arr = new MyArray();
-    expect(arr.map((num) => num + 1)).toEqual(new MyArray());
-    expect(arr.map((num) => num + 1).length).toBe(0);
-
+      const arr = new MyArray();
+      expect(arr.map((num) => num + 1)).toEqual(new MyArray());
+      expect(arr.map((num) => num + 1).length).toBe(0);
     });
 // 8
     test('if custom context doesn\'t provided, use current context', () => {
-    const arr = new MyArray(1, 4, 0);
-    const testArr = [];
-    const user = {
-    name: 'ivan',
-     testMap () {
-      arr.map(() => testArr.push(this.name));
-     }
-    }
-    user.testMap();
-    expect(testArr).toEqual(['ivan', 'ivan', 'ivan']);
+      const arr = new MyArray(1, 4, 0);
+      const testArr = [];
+      const user = {
+        name: 'ivan',
+        testMap () {
+          arr.map(() => testArr.push(this.name));
+        }
+      }
+      user.testMap();
+      expect(testArr).toEqual(['ivan', 'ivan', 'ivan']);
     });
-
-//9
+// 9
     test('thisArg is set as "this" of mapFunction properly for map method', () => {
-    const originArr = new MyArray(1, 4, 0);
-    const customContext = { test: 10 };
-      
-    function callback (item) {
+      const originArr = new MyArray(1, 4, 0);
+      const customContext = { test: 10 };
+        
+      function callback (item) {
         return this.test;
-    }
-    const resultArr = originArr.map(callback, customContext);
-    expect(resultArr).toEqual(new MyArray(10, 10, 10));
+      }
+
+      const resultArr = originArr.map(callback, customContext);
+      expect(resultArr).toEqual(new MyArray(10, 10, 10));
     });
-//10
-    test('expect  callbacks args length to be equal 3', () => {
-        const mockCallback = jest.fn();
-        const arr = new MyArray(1, 2, 3);
-        arr.map(mockCallback);
-        expect(mockCallback.mock.calls.length).toBe(3);
+// 10
+    test('expect callbacks args length to be equal 3', () => {
+      const mockCallback = jest.fn();
+      const arr = new MyArray(1, 2, 3);
+      arr.map(mockCallback);
+      expect(mockCallback.mock.calls.length).toBe(3);
     });
-//11
-    test('callback has to be a function', () => {
+// 11
+    test('should throw error if callback is not a function', () => {
         const callback = "";
         const arr = new MyArray(1, 2, 3); 
 
-        expect(() => {arr.map(callback)}).toThrow();
+        expect(() => {arr.map(callback)}).toThrow(TypeError);
+    });
+  });
+
+  describe('tests for method sort', () => {
+    test('instance has method sort', () => {
+      const arr = new MyArray(1, 4, 0);
+
+      expect(arr.sort).toBeInstanceOf(Function);
+    });
+
+    test('arr has not own property sort', () => {
+      const arr = new MyArray(1, 4, 0);
+
+      expect(arr.hasOwnProperty('sort')).toBeFalsy();
+    });
+
+    test('Throw error if comparator is not a function or undefined', () => {
+      let arr1 = new MyArray(1, 2, 3);
+      let comparator = 1;
+
+      expect(() => arr1.sort(comparator)).toThrow();
+    });
+
+    test('should work correctly with comparator', () => {
+      const comparator = jest.fn((a, b) => a - b);
+      const arr = new MyArray(4, 1, 3);
+
+      arr.sort(comparator);
+      
+      expect(arr).toEqual(new MyArray(1, 3, 4));
+    });
+
+    test('comparator must accepts two arguments', () => {
+      const comparator = jest.fn();
+      const arr = new MyArray(4, 1, 3);
+
+      arr.sort(comparator);
+      
+      expect(comparator.mock.calls.length).toBe(2);
+    });
+
+    test('should work correctly without comparator', () => {
+      const arr = new MyArray("b", "c", "a");
+      const arr2 = new MyArray(1, 2, 11, 12);
+
+      arr.sort();
+      arr2.sort();
+
+      expect(arr).toEqual(new MyArray("a", "b", "c"));
+      expect(arr2).toEqual(new MyArray(1, 11, 12, 2));
+    });
+
+    test('string elements should be sorted by UNICODE', () => {
+      const arr = new MyArray("h", "d", "m");
+      arr.sort();
+
+      expect(arr[0]).toEqual("d");
+    });
+
+    test('undefined shoud be at the end of array', () => {
+      const arr1 = new MyArray(undefined, 3, undefined, 2, undefined, 1);
+      const arr2 = new MyArray(3, undefined, 2, undefined, 1);
+      const arr3 = new MyArray(3, undefined, 2, 1);
+
+      arr1.sort();
+      arr2.sort();
+      arr3.sort();
+
+      expect(arr3[arr3.length - 1]).toEqual(undefined);
+      expect(arr2).toEqual(new MyArray(1, 2, 3, undefined, undefined));
+      expect(arr1).toEqual(new MyArray(1, 2, 3, undefined, undefined, undefined));
+    });
+
+    test('arr length before using sort === arr length after using it', () => {
+      const { length: initialLength } = new MyArray(3, 2, 1);
+      const { length: expectedLength } = new MyArray(3, 2, 1).sort();  
+
+      expect(initialLength).toBe(expectedLength);
+    });
+
+    test('numbers should be sorted as strings without comparator', () => {
+      const arr = new MyArray(1, 2, 10, 21);
+
+      arr.sort();
+
+      expect(arr).toEqual(new MyArray(1, 10, 2, 21));
+    });
+
+    test('numbers should be sorted as numbers with comparator', () => {
+      const arr1 = new MyArray(1, 10, 2, 21);
+      const arr2 = new MyArray(3, 40, 24, 1);
+
+      expect(arr1.sort((a, b) => a - b)).toEqual(new MyArray(1, 2, 10, 21));
+      expect(arr2.sort((a, b) => b - a)).toEqual(new MyArray(40, 24, 3, 1));
+    });
+
+    test('arr should be mutated', () => {
+      const arr = new MyArray(1, 2, 10, 21);
+
+      arr.sort();
+
+      expect(arr).toEqual(new MyArray(1, 10, 2, 21));
     });
   });
 
@@ -348,5 +449,4 @@ describe('Class MyArray', () => {
     });
 
   });
-
 });
