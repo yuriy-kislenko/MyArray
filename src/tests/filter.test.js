@@ -48,7 +48,8 @@ describe('tests for method filter', () => {
       isCallback = true;
       return x + 1;
     };
-    const arr = new MyArray(1, 10, 20).filter(callback);
+
+    new MyArray(1, 10, 20).filter(callback);
 
     expect(isCallback).toBe(true);
   });
@@ -86,11 +87,7 @@ describe('tests for method filter', () => {
   test('thisArg is set as -this- of callbackFunction properly for filter method', () => {
     const arr = new MyArray(2, 6, 10, 12, 16);
     const checkNumericRange = function(value) {
-      if (typeof value !== 'number') {
-        return false;
-      }else{
-        return value >= this.minimum && value <= this.maximum;
-      }
+      return typeof value === 'number' && (value >= this.minimum && value <= this.maximum);
     };
     const thisArg = { minimum: 10, maximum: 20 };
     const result = arr.filter(checkNumericRange, thisArg);
