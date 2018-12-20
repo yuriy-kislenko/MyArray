@@ -1,4 +1,4 @@
-import MyArray from './index';
+import MyArray from '../index';
 
   describe("tests for method reduce", () => {
     test("instance has method reduce", () => {
