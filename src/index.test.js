@@ -37,31 +37,29 @@ describe('Class MyArray', () => {
     });
 
     test('should work correctly with comparator', () => {
-      const arr = new MyArray(1, 4, 0);
-      const comparator = function(a, b){
-        return a-b;
-      }
 
-      expect(arr.sort(comparator)).toEqual([0, 1, 4]);
+    const comparator = jest.fn((a, b) => a - b);
+    const arr = new MyArray(4, 1, 3);
+    arr.sort(comparator);
+     
+    expect(arr).toEqual(new MyArray(1, 3, 4));
+
     });
 
     test('comparator must accepts two arguments', () => {
-     let comparatorLength;
-     const arr = new MyArray(4, 0).sort(comparator);
-     function comparator(a, b){
-      comparatorLength = arguments.length;
-      return a-b;
-    }
-
-    expect(comparatorLength).toEqual(2);
+     const comparator = jest.fn();
+     const arr = new MyArray(4, 1, 3);
+     arr.sort(comparator);
+     
+    expect(comparator.mock.calls.length).toBe(2);
   });
 
     test('should work correctly without comparator', () => {
       const arr = new MyArray("b","c","a");
       const arr2 = new MyArray(1, 2, 11 , 12);
 
-      expect(arr.sort()).toEqual(["a","b","c"]);
-      expect(arr2.sort()).toEqual([1, 11, 12, 2]);
+      expect(arr.sort()).toEqual(new MyArray("a","b","c"));
+      expect(arr2.sort()).toEqual(new MyArray(1, 11, 12, 2));
     });
 
     test('string elements should be sorted by UNICODE', () => {
@@ -81,8 +79,8 @@ describe('Class MyArray', () => {
       arr3.sort();
 
       expect(arr3[arr3.length-1]).toEqual(undefined);
-      expect(arr2).toEqual([1, 2, 3, undefined, undefined]);
-      expect(arr1).toEqual([1, 2, 3, undefined, undefined, undefined]);
+      expect(arr2).toEqual(new MyArray(1, 2, 3, undefined, undefined));
+      expect(arr1).toEqual(new MyArray(1, 2, 3, undefined, undefined, undefined));
     });
 
     test('arr length before using sort == arr length after using it', () => {
@@ -96,15 +94,15 @@ describe('Class MyArray', () => {
       const arr = new MyArray(1, 2, 10, 21);
       const arr2 = arr.sort();
 
-      expect(arr2).toEqual([1, 10, 2, 21]);
+      expect(arr2).toEqual(new MyArray(1, 10, 2, 21));
     });
 
     test('numbers should be sorted as numbers with comparator', () => {
       const arr1 = new MyArray(1, 10, 2, 21);
       const arr2 = new MyArray(3, 40, 24, 1);
 
-      expect(arr1.sort((a, b) => a - b)).toEqual([1, 2, 10, 21]);
-      expect(arr2.sort((a, b) => b - a)).toEqual([40, 24, 3, 1]);
+      expect(arr1.sort((a, b) => a - b)).toEqual(new MyArray(1, 2, 10, 21));
+      expect(arr2.sort((a, b) => b - a)).toEqual(new MyArray(40, 24, 3, 1));
     });
 
     test('arr should be mutated', () => {
