@@ -5,8 +5,8 @@ import MyArray from '../index.js';
       const arr1 = new MyArray();
       const arr2 = new MyArray(5);
       const arr3 = new MyArray(1, 2); 
-      const arr4 = new MyArray('1'); 
-
+      const arr4 = new MyArray('1');
+      
       expect(arr1.length).toEqual(0);
       expect(arr2.length).toEqual(5);
       expect(arr3.length).toEqual(2);
