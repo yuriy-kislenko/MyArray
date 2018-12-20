@@ -11,7 +11,7 @@ describe('tests for instance', () => {
     expect(arr[3]).toBe('orange');
   });
 
-  test('The instance mustn\'t be an instance of the class "Array"', () => {
+  test('The instance mustn\'t be an instance of the class \'Array\'', () => {
     expect(arr instanceof Array).toBeFalsy();
     expect(arr).toBeInstanceOf(MyArray);
   });
@@ -28,8 +28,8 @@ describe('tests for instance', () => {
     expect(prototypeMethods).toEqual(declaratedMethods);
   });
 
-  test('Class has only declarated static method and common like "length", "prototype", "name"', () => {
-    const declaratedMethods = ["length", "prototype", "from", "name"].sort();
+  test('Class has only declarated static method and common like \'length\', \'prototype\', \'from\', \'name\'', () => {
+    const declaratedMethods = ['length', 'prototype', 'from', 'name'].sort();
     const staticMethods = Reflect.ownKeys(MyArray).sort();
 
     expect(staticMethods).toEqual(declaratedMethods);
