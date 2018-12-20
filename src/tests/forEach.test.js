@@ -20,7 +20,6 @@ describe('tests for method forEach', () => {
     test('does not mutate initial arr if we do nothing inside the cb ', () => {
         arr.forEach(a => a);
         expect(arr).toEqual(new MyArray(1, 4, 0));
-
     });
 
     test("if custom context doesn't provided, use current context ", () => {
@@ -81,7 +80,7 @@ describe('tests for method forEach', () => {
         expect(testArr).toEqual(['ivan2', 'ivan2', 'ivan2']);
     });
 
-    test("callback has to be a function", () => {
+    test("if callback isn't a function, throw error", () => {
         const callback = 1;
         expect(() => {
             arr.forEach(callback);
