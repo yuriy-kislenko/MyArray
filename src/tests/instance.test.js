@@ -17,8 +17,10 @@ describe('tests for instance', () => {
   });
 
   test('Instance dosn\'t have any own property except length', () => {
-    expect(Object.keys(arr).length).toBe(1);
-    expect(Object.keys(arr)).toHaveProperty('length');
+    const myArr = new MyArray();
+
+    expect(Object.keys(myArr).length).toBe(1);
+    expect(myArr).toHaveProperty('length');
   });
 
   test('Prototype have only declarated method and constructor', () => {
