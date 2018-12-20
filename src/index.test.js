@@ -21,7 +21,9 @@ describe("Class MyArray", () => {
         },
         objectAside
       );
-      expect(String(arr)).toEqual("12,22,32");
+      expect(arr[0]).toBe(12);
+      expect(arr[1]).toBe(22);
+      expect(arr[2]).toBe(32);
     });
 
     test("Method FROM must return new instance of MyArray with current elements", () => {
@@ -47,16 +49,24 @@ describe("Class MyArray", () => {
         objectAside
       );
 
-      expect(String(arr1)).toEqual("10,20,30");
-      expect(String(arr2)).toEqual("11,21,31");
-      expect(String(arr3)).toEqual("12,22,32");
+      expect(arr1[0]).toBe(10);
+      expect(arr1[1]).toBe(20);
+      expect(arr1[2]).toBe(30);
+      expect(arr2[0]).toBe(11);
+      expect(arr2[1]).toBe(21);
+      expect(arr2[2]).toBe(31);
+      expect(arr3[0]).toBe(12);
+      expect(arr3[1]).toBe(22);
+      expect(arr3[2]).toBe(32);
     });
 
     test("Elements' order in 'a' should be the same as in arrayLike", () => {
       const baseArr = [1, 2, 3];
       const arrayLine = MyArray.from(baseArr);
 
-      expect(String(baseArr)).toBe(String(arrayLine));
+      expect(baseArr[0]).toBe(arrayLine[0]);
+      expect(baseArr[1]).toBe(arrayLine[1]);
+      expect(baseArr[2]).toBe(arrayLine[2]);
     });
   });
 });
