@@ -1,5 +1,6 @@
 import MyArray from '../index';
 
+
 describe('tests for method pop', () => {
   let arr;
 
@@ -16,18 +17,18 @@ describe('tests for method pop', () => {
     expect(arr.hasOwnProperty('pop')).toBeFalsy();
   });
 
-  test('Method must return deleted element', () => {
+  test('method must return deleted element', () => {
     expect(arr.pop()).toBe(0);
   });
 
-  test('Method must delete last element from array', () => {
+  test('method must delete last element from array', () => {
     const deleted = arr.pop();
 
     expect(arr[3]).toBeUndefined();
     expect(deleted).toBe(0);
   });
 
-  test('Length of array must reduce by 1', () => {
+  test('length of array must reduce by 1', () => {
     arr.pop();
 
     expect(arr.length).toBe(2);
@@ -39,7 +40,7 @@ describe('tests for method pop', () => {
     expect(arrEmpty.pop()).toBeUndefined();
   });
 
-  test('Empty array length always must be 0', () => {
+  test('empty array length always must be 0', () => {
     const arrEmpty = new MyArray();
     const { length: initialLength } = arrEmpty;
 

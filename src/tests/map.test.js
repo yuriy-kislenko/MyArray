@@ -1,5 +1,6 @@
 import MyArray from '../index';
 
+
 describe('tests for method map', () => {
   test('instance has method map', () => {
     const arr = new MyArray(1, 4, 0);
@@ -39,7 +40,7 @@ describe('tests for method map', () => {
     expect(mockCallback.mock.results[2].value).toBe(30);
   });
 
-  test("method map shouldn't mutate initial array", () => {
+  test('method map shouldn\'t mutate initial array', () => {
     const arr = new MyArray(5, 4, 3);
     arr.map((num) => num + 1);
 
@@ -68,7 +69,7 @@ describe('tests for method map', () => {
     expect(testArr).toEqual(['ivan', 'ivan', 'ivan']);
   });
 
-  test('thisArg is set as "this" of mapFunction properly for map method', () => {
+  test('thisArg is set as \'this\' of mapFunction properly for map method', () => {
     const originArr = new MyArray(1, 4, 0);
     const customContext = { test: 10 };
       
@@ -90,7 +91,7 @@ describe('tests for method map', () => {
   });
 
   test('should throw error if callback is not a function', () => {
-    const callback = "";
+    const callback = '';
     const arr = new MyArray(1, 2, 3); 
 
     expect(() => arr.map(callback)).toThrow(TypeError);

@@ -1,5 +1,6 @@
 import MyArray from '../index';
 
+
 describe('tests for method sort', () => {
   test('instance has method sort', () => {
     const arr = new MyArray(1, 4, 0);
@@ -13,7 +14,7 @@ describe('tests for method sort', () => {
     expect(arr.hasOwnProperty('sort')).toBeFalsy();
   });
 
-  test('Throw error if comparator is not a function or undefined', () => {
+  test('throw error if comparator is not a function or undefined', () => {
     const arr = new MyArray(1, 2, 3);
 
     expect(() => arr.sort('is not a comparator')).toThrow(TypeError);
@@ -38,21 +39,21 @@ describe('tests for method sort', () => {
   });
 
   test('should work correctly without comparator', () => {
-    const arr = new MyArray("b", "c", "a");
+    const arr = new MyArray('b', 'c', 'a');
     const arr2 = new MyArray(1, 2, 11, 12);
 
     arr.sort();
     arr2.sort();
 
-    expect(arr).toEqual(new MyArray("a", "b", "c"));
+    expect(arr).toEqual(new MyArray('a', 'b', 'c'));
     expect(arr2).toEqual(new MyArray(1, 11, 12, 2));
   });
 
   test('string elements should be sorted by UNICODE', () => {
-    const arr = new MyArray("h", "d", "m");
+    const arr = new MyArray('h', 'd', 'm');
     arr.sort();
 
-    expect(arr[0]).toEqual("d");
+    expect(arr[0]).toEqual('d');
   });
 
   test('undefined shoud be at the end of array', () => {

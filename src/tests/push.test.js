@@ -1,5 +1,6 @@
 import MyArray from '../index';
 
+
 describe('tests for method push', () => {
   let arr;
 
@@ -30,20 +31,20 @@ describe('tests for method push', () => {
     expect(arr.length).toBe(expectedLength);
   });
 
-  test("method doesn't change length, if 0 argument is put", () => {
+  test('method doesn\'t change length, if 0 argument is put', () => {
     arr.push();
 
     expect(arr.length).toBe(3);
   });
 
-  test("pushed element must be the last", () => {
+  test('pushed element must be the last', () => {
     const a = 5;
     arr.push(a);
 
     expect(arr[3]).toBe(a);
   });
 
-  test("should allow to add multiple items", () => {
+  test('should allow to add multiple items', () => {
     arr.push(4, 5, 6);
 
     expect(arr.length).toBe(6);
@@ -52,14 +53,14 @@ describe('tests for method push', () => {
     expect(arr[5]).toBe(6);
   });
 
-  test("push 1 element to an empty array, it`s length must be 1", () => {
+  test('push 1 element to an empty array, it`s length must be 1', () => {
     arr = new MyArray();
 
     expect(arr.push(1)).toBe(1);
     expect(arr.length).toBe(1);
   });
 
-  test("returns undefined if there is no such index", () => {
+  test('returns undefined if there is no such index', () => {
     arr.push(5);
 
     expect(arr[arr.length]).toBeUndefined();
