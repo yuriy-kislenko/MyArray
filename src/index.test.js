@@ -76,19 +76,17 @@ describe('Class MyArray', () => {
       const arr = new MyArray(1, 4, 0);
       expect(arr.reduce).toBeInstanceOf(Function);
     });
-    test("instance has  Own Property reduce", () => {
+    test("instance has not own property reduce", () => {
       const arr = new MyArray(1, 4, 0);
       expect(arr.hasOwnProperty("reduce")).toBeFalsy();
     });
     test("Method shouldn't mutate initial array", () => {
       const arr = new MyArray(1, 2, 3);
       const mockCallback = jest.fn();
-      const new1 = arr;
       arr.reduce(mockCallback);
-      const new2 = arr;
-      expect(new1).toEqual(new2);
+      expect(arr).toEqual(MyArray(1, 2, 3));
     });
-    test("callback has to be a function", () => {
+    test("If callback is not a function the error should be thrown", () => {
       let callback = 1212121;
       const arr = new MyArray(1, 4, 4, 5, 0, 0);
       expect(()=>{arr.reduce(callback)}).toThrow();
@@ -100,51 +98,60 @@ describe('Class MyArray', () => {
       let result = arr.reduce(mockCallback, thisArg);
       expect(result).toEqual(thisArg);
     });
-    test('initialValue is not passed', () => {
+    test('reduce callback takes first element as a value of first parameter if initialValue is not passed', () => {
       const arr = new MyArray(1, 2);
-      arr.reduce((accum, curr, i) => {
-      expect(accum).toEqual(arr[0]);
-      });
+      const mockCallback = jest.fn(accum => 0);
+      arr.reduce(mockCallback);
+      expect(mockCallback.mock.calls[0][0]).toEqual(1);
     });
-    test('If an array is empty and initialValue is absent, reduce has to return TypeError', () => {
+    test('If array is empty and InitialValue is specified, callback shouldn\'t  be called, and methods result should be ItitialValue', () => {
       const arr = new MyArray();
       const callReduceOnEmptyArray = () => {
         arr.reduce(() => 0);
       };
       expect(callReduceOnEmptyArray).toThrow(TypeError);
     });
-    test('As an another option of previous test - the number of using callback function is the same as quantity', () => {
+    test('As an another option of previous test - the number of callback function calls should be equal to the arrays length', () => {
       const arr = new MyArray(1,2,3,5);
-      const muckCallback = jest.fn();
-      let z = arr.reduce(muckCallback, 0);
-      expect(muckCallback.mock.calls.length).toBe(4);
+      const mockCallback = jest.fn();
+      let z = arr.reduce(mockCallback, 0);
+      expect(mockCallback.mock.calls.length).toBe(4);
     });
     describe("tests for initial value", () => {
       test('initial value is null', () => {
         const arr = new MyArray(1, 2);
-        const testResult = arr.reduce(acc => acc, null);
-        expect(testResult).toBeNull();
+        const mockCallback = jest.fn();
+        arr.reduce(mockCallback, null);
+        expect(mockCallback.mock.calls[0][0]).toBeNull();
       });
       test('initial value is false', () => {
         const arr = new MyArray(1, 2);
-        const testResult = arr.reduce(acc => acc, false);
-        expect(testResult).toBeFalsy();
+        const mockCallback = jest.fn();
+        arr.reduce(mockCallback, false);
+        expect(mockCallback.mock.calls[0][0]).toBeFalsy();
       });
       test('initial value is 0', () => {
         const arr = new MyArray(1, 2);
-        const testResult = arr.reduce(acc => acc, 0);
-        expect(testResult).toEqual(0);
+        const mockCallback = jest.fn();
+        arr.reduce(mockCallback, 0);
+        expect(mockCallback.mock.calls[0][0]).toEqual(0);
       });
       test('initial value is \'\'', () => {
         const arr = new MyArray(1, 2);
-        const testResult = arr.reduce(acc => acc, '');
-        expect(testResult).toEqual('');
+        const mockCallback = jest.fn();
+        arr.reduce(mockCallback, '');
+        expect(mockCallback.mock.calls[0][0]).toEqual('');
       });
       test('initial value is NaN', () => {
         const arr = new MyArray(1, 2);
-        const testResult = arr.reduce(acc => acc, NaN);
-        expect(testResult).toEqual(NaN);
+        const mockCallback = jest.fn();
+        arr.reduce(mockCallback, NaN);
+        expect(mockCallback.mock.calls[0][0]).toEqual(NaN);
       });
+    });
+    test("Method reduce's callback should be a function", () => {
+      const arr = new MyArray(1, 4, 0);
+      expect(arr.reduce).toBeInstanceOf(Function);
     });
   });
 
