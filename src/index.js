@@ -26,8 +26,14 @@ class MyArray {
   }
 
   pop() {
-    delete this[this.length - 1];
-    this[this.length - 1];
+    if (this.length < 0) {
+      this.length = 0;
+    } else {
+      const lastItem = this[this.length - 1];
+      delete this[this.length - 1];
+      this.length = this.length - 1;
+      return lastItem;
+    }
   }
 
   static from(args) {
