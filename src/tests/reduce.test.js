@@ -3,7 +3,7 @@ import MyArray from '../index';
 
 describe('tests for method reduce', () => {
   test('instance has method reduce', () => {
-    const arr = new MyArray(1, 4, 0);
+    const arr = null;
 
     expect(arr.reduce).toBeInstanceOf(Function);
   });
