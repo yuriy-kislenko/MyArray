@@ -1,9 +1,20 @@
 class MyArray {
   constructor(...arr) {
-    for (let i = 0; i < arr.length; i++) {
-      this[i] = arr[i];
+    if (arr.length === 1 && typeof arr[0] === 'string') {
+      this[0] = arr[0];
+      this.length = arr.length;
     }
-    this.length = arr.length;
+    else if (arr.length === 1) {
+      for (let i = 0; i < arr[0]; i++) {
+        this[i] = undefined;
+      }
+      this.length = arr[0];
+    } else {
+      for (let i = 0; i < arr.length; i++) {
+        this[i] = arr[i];
+      }
+      this.length = arr.length;
+    }
   }
 
   push(...arr) {
