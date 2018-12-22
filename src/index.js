@@ -10,6 +10,7 @@ class MyArray {
     for (let i = 0; i < arr.length; i++) {
       this[this.length + 1] = arr[i];
     }
+    return this.length + arr.length;
   }
 
   toString() {
