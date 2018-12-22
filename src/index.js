@@ -8,7 +8,7 @@ class MyArray {
 
   push(...arr) {
     for (let i = 0; i < arr.length; i++) {
-      this[this.length + 1] = arr[i];
+      this[this.length] = arr[i];
       this.length += 1;
     }
 
