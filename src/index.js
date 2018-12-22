@@ -72,12 +72,19 @@ class MyArray {
   }
 
   reduce(callback, startValue) {
-    let result = startValue;
+    let accum = null;
 
-    for (let i = 0; i < this.length; i++) {
-      result = callback(result, this[i], i, this);
+    if (startValue === undefined) {
+      accum = this[0];
+    } else {
+      accum = callback(startValue, this[0], 0, this);
     }
-    return result;
+
+    for (let i = 1; i < this.length; i++) {
+      accum = callback(accum, this[i], i, this);
+    }
+
+    return accum;
   }
 
   filter(callback) {
