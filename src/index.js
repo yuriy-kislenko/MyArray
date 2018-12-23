@@ -88,11 +88,11 @@ class MyArray {
   }
 
   filter(callback) {
-    const newArray = new MyArray();
+    const newArray = new MyArray(0);
 
     for (let i = 0; i < this.length; i++) {
       if (callback(this[i], i, this)) {
-        newArray.push(callback(this[i]));
+        newArray.push(this[i]);
       }
     }
     return newArray;
