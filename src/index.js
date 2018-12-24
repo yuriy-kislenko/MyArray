@@ -87,15 +87,16 @@ class MyArray {
     return accum;
   }
 
-  filter(callback) {
-    const newArray = new MyArray();
+  filter(callback, thisArg) {
+    const newArr = new MyArray();
 
     for (let i = 0; i < this.length; i++) {
-      if (callback(this[i], i, this)) {
-        newArray.push(callback(this[i]));
+      if (callback.call(thisArg, this[i], i, this)) {
+        newArr.push(this[i]);
       }
     }
-    return newArray;
+
+    return newArr;
   }
 
   sort(callback) {
